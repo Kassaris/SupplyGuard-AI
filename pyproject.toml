@@ -10,8 +10,11 @@ requires-python = ">=3.12"
 dependencies = [
     "bcrypt>=5.0.0",
     "chainlit>=2.12.0",
+    "langchain-chroma>=1.2.0",
     "langchain-core>=1.8.4",
+    "langchain-postgres>=0.0.19",
     "langgraph>=1.2.24",
+    "psycopg-pool>=3.3.3",
     "psycopg[binary]>=3.3.9",
     "python-dotenv>=1.2.4",
 ]
