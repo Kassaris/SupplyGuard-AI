@@ -1,0 +1,224 @@
+# SupplyGuard AI. Start everything with:   docker compose up -d --build
+# Open http://localhost:8000 and sign in (see README).
+#
+# Pattern taken from HelpDesk-Lite (Postgres/pgvector, Neo4j, one-shot seed jobs, app),
+# extended with ChromaDB, two MCP servers, the external information service and a
+# no-network analysis sandbox.
+
+x-app-image: &app-image
+  build: .
+  image: supplyguard-ai:latest
+  env_file: .env
+
+x-app-env: &app-env
+  POSTGRES_HOST: postgres
+  POSTGRES_PORT: "5432"
+  NEO4J_URI: bolt://neo4j:7687
+  CHROMA_HOST: chromadb
+  CHROMA_PORT: "8000"
+  SUPPORT_DATA_DIR: /code/support-data
+  PROCUREMENT_MCP_URL: http://procurement-mcp:8101/mcp
+  EXTERNAL_MCP_URL: http://external-mcp:8102/mcp
+  SANDBOX_URL: http://sandbox:8200
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg17
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./docker/postgres:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  neo4j:
+    image: neo4j:5.26
+    environment:
+      NEO4J_AUTH: ${NEO4J_USER}/${NEO4J_PASSWORD}
+      # LOAD CSV 'file:///x.csv' reads from here (support-data/graph, read-only).
+      NEO4J_server_directories_import: /support-graph
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    volumes:
+      - neo4j_data:/data
+      - ./support-data/graph:/support-graph:ro
+    healthcheck:
+      test: ["CMD-SHELL", "cypher-shell -u ${NEO4J_USER} -p ${NEO4J_PASSWORD} 'RETURN 1'"]
+      interval: 10s
+      timeout: 10s
+      retries: 20
+      start_period: 30s
+
+  chromadb:
+    image: chromadb/chroma:1.5.9
+    environment:
+      IS_PERSISTENT: "TRUE"
+    ports:
+      - "8001:8000"
+    volumes:
+      - chroma_data:/data
+
+  # ---------------------------------------------------------------- one-shot loaders
+
+  # support-data/graph -> Neo4j with the provided load.cypher (MERGE: safe to re-run).
+  neo4j-seed:
+    image: neo4j:5.26
+    depends_on:
+      neo4j:
+        condition: service_healthy
+    volumes:
+      - ./support-data/graph/load.cypher:/load.cypher:ro
+    entrypoint:
+      - /bin/sh
+      - -c
+      - |
+        cypher-shell -a bolt://neo4j:7687 -u ${NEO4J_USER} -p ${NEO4J_PASSWORD} -f /load.cypher && echo "neo4j-seed: done"
+    restart: "no"
+
+  # support-data/structured -> Postgres ops.* (truncate + reload) and the demo users.
+  data-load:
+    <<: *app-image
+    environment: *app-env
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command: ["sh", "-c", "python -m supplyguard_ai.ingestion.load_structured && python -m supplyguard_ai.ingestion.seed_users"]
+    restart: "no"
+
+  # documents -> pgvector + ChromaDB, memories -> pgvector (needs the Azure embedding settings).
+  # Runs once; delete the volume ingest_state (or run it manually) to re-embed.
+  doc-ingest:
+    <<: *app-image
+    environment: *app-env
+    depends_on:
+      postgres:
+        condition: service_healthy
+      chromadb:
+        condition: service_started
+    volumes:
+      - ingest_state:/state
+    command:
+      - sh
+      - -c
+      - |
+        if [ -f /state/documents.done ]; then echo "doc-ingest: already done, skipping"; exit 0; fi
+        for i in 1 2 3 4 5 6 7 8 9 10; do
+          python -m supplyguard_ai.ingestion.ingest_documents && touch /state/documents.done && exit 0
+          echo "doc-ingest: attempt $$i failed, retrying in 5 s"; sleep 5
+        done
+        exit 1
+    restart: "no"
+
+  # ---------------------------------------------------------------- integrations
+
+  # The provided external information service, run unchanged (independently deployed).
+  external-info:
+    image: python:3.12.10-slim
+    working_dir: /service
+    volumes:
+      - ./support-data/external_service:/service:ro
+    command: ["python", "external_info_service.py", "8099"]
+    user: "65534:65534"
+
+  # MCP server in front of the external information service.
+  external-mcp:
+    <<: *app-image
+    environment:
+      <<: *app-env
+      EXTERNAL_INFO_URL: http://external-info:8099
+      PORT: "8102"
+    ports:
+      - "127.0.0.1:8102:8102"   # local only, for tests
+    command: ["python", "-m", "supplyguard_ai.mcp_servers.external_server"]
+    depends_on:
+      - external-info
+
+  # MCP server of the simulated procurement system (approval-checked, idempotent writes).
+  procurement-mcp:
+    <<: *app-image
+    environment:
+      <<: *app-env
+      PORT: "8101"
+    ports:
+      - "127.0.0.1:8101:8101"   # local only, for tests
+    command: ["python", "-m", "supplyguard_ai.mcp_servers.procurement_server"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+      data-load:
+        condition: service_completed_successfully
+
+  # Analysis sandbox for the Deep Agent: no internet (internal network only), read-only
+  # filesystem, non-root, no capabilities, CPU/memory/process limits.
+  sandbox:
+    image: python:3.12.10-slim
+    volumes:
+      - ./src/supplyguard_ai/sandbox/server.py:/sandbox/server.py:ro
+    command: ["python", "/sandbox/server.py"]
+    networks: [sandbox_net]
+    read_only: true
+    tmpfs: [/tmp]
+    user: "65534:65534"
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    mem_limit: 512m
+    pids_limit: 128
+    cpus: 1.0
+
+  # ---------------------------------------------------------------- application
+
+  app:
+    <<: *app-image
+    environment: *app-env
+    ports:
+      - "8000:8000"
+    networks: [default, sandbox_net]
+    depends_on:
+      postgres:
+        condition: service_healthy
+      neo4j:
+        condition: service_healthy
+      neo4j-seed:
+        condition: service_completed_successfully
+      data-load:
+        condition: service_completed_successfully
+      doc-ingest:
+        condition: service_completed_successfully
+      procurement-mcp:
+        condition: service_started
+      external-mcp:
+        condition: service_started
+      sandbox:
+        condition: service_started
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    profiles: ["tools"]   # optional: docker compose --profile tools up -d pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:-admin@example.com}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:-admin}
+    ports:
+      - "5050:80"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+networks:
+  default:
+  sandbox_net:
+    internal: true   # no route to the internet
+
+volumes:
+  postgres_data:
+  neo4j_data:
+  chroma_data:
+  ingest_state:
