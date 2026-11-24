@@ -1,0 +1,691 @@
+/* ========================================
+   AVATAR ALIGNMENT
+   ======================================== */
+
+/* Keep the avatar aligned with the first line of text */
+.ai-message {
+    align-items: flex-start !important;
+}
+
+/* Position the 40px avatar relative to the first text line */
+.ai-message > span:first-child {
+    margin-top: -6px !important;
+}
+
+/* Remove the default 3px offset */
+.ai-message > span:first-child > span {
+    margin-top: 0 !important;
+}
+
+
+/* ========================================
+   SEND & STOP BUTTONS
+   ======================================== */
+
+/* Default color */
+button.bg-primary {
+    background-color: #38BDF8 !important;
+    color: #082F49 !important;
+}
+
+/* Hover color */
+button.bg-primary:hover:not(:disabled) {
+    background-color: #0EA5E9 !important;
+}
+
+/* Disabled state */
+button.bg-primary:disabled {
+    opacity: 0.5;
+}
+
+
+
+/* ========================================
+   CLOSE (X) BUTTON
+   ======================================== */
+
+/* Close (X) button - larger blue circle */
+button:has(> svg.lucide-x):focus,
+button:has(> svg.lucide-x):focus-visible {
+    --tw-ring-color: #38BDF8 !important;
+    box-shadow: 0 0 0 2px #38BDF8 !important;
+    outline: 6px solid transparent !important;
+    outline-offset: 0;
+    border-radius: 50% !important;
+}
+
+/* Increase the button's circular area */
+button:has(> svg.lucide-x) {
+    width: 32px !important;
+    height: 32px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50% !important;
+}
+
+
+/* ========================================
+   THEME-BASED CHAT LOGO
+   ======================================== */
+
+/* Increase logo size while maintaining proportions */
+img.logo {
+    width: 75% !important;
+    max-width: 500px !important;
+    height: auto !important;
+    object-fit: contain;
+}
+
+/* Display the light-theme logo */
+img.logo {
+    content: url("/public/logo_light.png");
+}
+
+/* Display the dark-theme logo */
+.dark img.logo {
+    content: url("/public/logo_dark.png");
+}
+
+
+
+
+
+/* ========================================
+   FUNCTIONAL CHAT HISTORY SIDEBAR
+   ======================================== */
+
+#custom-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 260px;
+    height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    background: #F1F5F9;
+    color: #334155;
+    border-right: 1px solid #E2E8F0;
+    z-index: 100;
+    transition: transform 0.25s ease;
+}
+
+#custom-sidebar.collapsed {
+    transform: translateX(-100%);
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+#sidebar-new-chat,
+#sidebar-search {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #CBD5E1;
+    border-radius: 8px;
+}
+
+#sidebar-new-chat,
+#close-sidebar,
+#open-sidebar {
+    cursor: pointer;
+}
+
+#custom-sidebar h4 {
+    margin: 15px 0;
+    font-size: 13px;
+}
+
+/* ========================================
+   OPEN SIDEBAR BUTTON - CHAINLIT STYLE
+   ======================================== */
+
+#open-sidebar {
+    position: fixed;
+    top: 65px;
+    left: 12px;
+    z-index: 101;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 36px;
+    height: 36px;
+    padding: 0;
+
+    background: transparent;
+    color: #52525B;
+
+    border: none;
+    border-radius: 8px;
+
+    font-size: 20px;
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+/* ========================================
+   LIGHT MODE - BUTTON HOVER
+   ======================================== */
+
+#open-sidebar:hover {
+    background: rgba(0, 0, 0, 0.06);
+    color: #27272A;
+}
+
+/* ========================================
+   DARK MODE - BUTTON
+   ======================================== */
+
+.dark #open-sidebar {
+    background: transparent;
+    color: #A1A1AA;
+}
+
+/* Dark mode hover */
+.dark #open-sidebar:hover {
+    background: rgba(255, 255, 255, 0.10);
+    color: #FFFFFF;
+}
+
+/* ========================================
+   HIDDEN STATE
+   ======================================== */
+
+#open-sidebar[hidden] {
+    display: none;
+}
+
+
+/* ========================================
+   DARK MODE - SIDEBAR
+   ======================================== */
+
+.dark #custom-sidebar {
+    background: #1a1d20;
+    color: #E5E7EB;
+    border-right-color: #374151;
+}
+
+
+/* ========================================
+   SIDEBAR LOGO
+   ======================================== */
+
+/* Sidebar header layout */
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+/* Logo container */
+.sidebar-brand {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Light mode logo */
+.sidebar-logo {
+    display: block;
+    content: url("/public/logo_light.png");
+    width: 100%;
+    transform: translateX(-8px);
+    max-width: 190px;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Dark mode logo */
+.dark .sidebar-logo {
+    content: url("/public/logo_dark.png");
+}
+
+
+/* ========================================
+   SIDEBAR - MAIN CONTENT SLIDE
+   ======================================== */
+
+/* Sidebar width */
+:root {
+    --sidebar-width: 260px;
+}
+
+/* Move the Chainlit application smoothly */
+#root {
+    width: 100%;
+    margin-left: 0;
+    transition:
+        margin-left 0.3s ease,
+        width 0.3s ease;
+}
+
+/* When sidebar is open */
+body.custom-sidebar-open #root {
+    margin-left: var(--sidebar-width);
+    width: calc(100% - var(--sidebar-width));
+}
+
+/* ========================================
+   SIDEBAR - RESPONSIVE LAYOUT
+   ======================================== */
+
+/* On smaller screens, sidebar overlays the chat */
+@media (max-width: 768px) {
+    body.custom-sidebar-open #root {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+
+/* ========================================
+   NEW CHAT TOOLTIP - RIGHT POSITION
+   ======================================== */
+
+[data-radix-popper-content-wrapper]:has(
+    [data-side="bottom"] > span[role="tooltip"]
+) {
+    margin-left: 58px !important;
+    margin-top: -39px !important;
+}
+
+
+
+/* ========================================
+   HIDE DEFAULT NEW CHAT BUTTON
+   WHEN SIDEBAR IS OPEN
+   ======================================== */
+
+/* Hide Chainlit's New Chat button */
+body.custom-sidebar-open #new-chat-button {
+    display: none !important;
+}
+
+
+
+/* ========================================
+   SIDEBAR BUTTONS - HOVER EFFECTS
+   ======================================== */
+
+/* New Chat button - smooth hover transition */
+#sidebar-new-chat {
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+/* Light mode - New Chat hover */
+#sidebar-new-chat:hover {
+    background-color: rgba(0, 0, 0, 0.06);
+}
+
+/* Dark mode - New Chat hover */
+.dark #sidebar-new-chat:hover {
+    background-color: rgba(255, 255, 255, 0.10);
+}
+
+
+/* ========================================
+   SIDEBAR CLOSE BUTTON - CHAINLIT STYLE
+   ======================================== */
+
+/* Close sidebar button */
+#close-sidebar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+    top: -1px;
+
+    width: 36px;
+    height: 36px;
+    padding: 0;
+
+    font-size: 20px;
+    line-height: 1;
+
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+/* Light mode - Close button hover */
+#close-sidebar:hover {
+    background-color: rgba(0, 0, 0, 0.06);
+}
+
+/* Dark mode - Close button hover */
+.dark #close-sidebar:hover {
+    background-color: rgba(255, 255, 255, 0.10);
+}
+
+
+
+/* ========================================
+   THEME TOGGLE BUTTON - REMOVE FOCUS RING
+   ======================================== */
+
+button:has(svg.lucide-moon):focus,
+button:has(svg.lucide-moon):focus-visible,
+button:has(svg.lucide-sun):focus,
+button:has(svg.lucide-sun):focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+    --tw-ring-shadow: 0 0 #0000 !important;
+}
+
+
+/* ========================================
+   SIDEBAR NEW CHAT - ICON ALIGNMENT
+   ======================================== */
+
+#sidebar-new-chat {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+#sidebar-new-chat svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+
+
+/* ========================================
+   SIDEBAR NEW CHAT - ALIGNMENT & STYLE
+   ======================================== */
+
+#sidebar-new-chat {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    position: relative;
+
+    padding: 10px 0;
+    border: none;
+    background: transparent;
+    border-radius: 8;
+    box-shadow: none;
+}
+
+/* Remove border on focus */
+#sidebar-new-chat:focus,
+#sidebar-new-chat:focus-visible {
+    outline: none;
+    box-shadow: none;
+}
+
+/* Keep icon aligned with text */
+#sidebar-new-chat svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+#sidebar-new-chat::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 0 -8px;
+    border-radius: 8px;
+    background: transparent;
+    pointer-events: none;
+}
+
+#sidebar-new-chat:hover {
+    background: transparent;
+}
+
+/* ========================================
+   SIDEBAR NEW CHAT - LIGHT MODE HOVER
+   ======================================== */
+
+#sidebar-new-chat:hover::before {
+    background: #E2E5E9;
+}
+
+/* ========================================
+   SIDEBAR NEW CHAT - DARK MODE HOVER
+   ======================================== */
+
+.dark #sidebar-new-chat:hover::before {
+    background: transparent;
+}
+
+/* ========================================
+   SIDEBAR NEW CHAT - DARK MODE HOVER
+   ======================================== */
+
+/* Remove the button's original hover background */
+.dark #sidebar-new-chat:hover {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* Keep only the expanded hover background */
+.dark #sidebar-new-chat:hover::before {
+    inset: 0 0 0 -8px;
+    background: rgba(255, 255, 255, 0.10);
+}
+
+/* ========================================
+   SIDEBAR NEW CHAT - HOVER FIX BOTH THEMES
+   ======================================== */
+
+/* Keep the button content above the hover background */
+#sidebar-new-chat {
+    position: relative;
+    isolation: isolate;
+}
+
+/* Hover background */
+#sidebar-new-chat::before {
+    z-index: -1;
+}
+
+/* Keep text and icon visible */
+#sidebar-new-chat svg,
+#sidebar-new-chat span {
+    position: relative;
+    z-index: 1;
+}
+
+/* Light mode text and icon color */
+#sidebar-new-chat {
+    color: #334155;
+}
+
+/* Dark mode text and icon color */
+.dark #sidebar-new-chat {
+    color: #E5E7EB;
+}
+
+
+/* ========================================
+   SIDEBAR SEARCH - ICON STYLE
+   ======================================== */
+
+#sidebar-search {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#sidebar-search svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+/* Light mode */
+#sidebar-search:hover {
+    background: rgba(0, 0, 0, 0.06);
+}
+
+/* Dark mode */
+.dark #sidebar-search:hover {
+    background: rgba(255, 255, 255, 0.10);
+}
+
+
+/* ========================================
+   SIDEBAR HEADER - SEARCH & CLOSE ICONS
+   ======================================== */
+
+.sidebar-header {
+    gap: 4px;
+}
+
+.sidebar-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    flex-shrink: 0;
+}
+
+/* Keep both icons aligned */
+.sidebar-header-actions #sidebar-search,
+.sidebar-header-actions #close-sidebar {
+    width: 30px;
+    height: 36px;
+    padding: 0;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+/* Remove previous close icon offset */
+.sidebar-header-actions #close-sidebar {
+    top: 0;
+}
+
+/* Adjust logo to fit both icons */
+.sidebar-logo {
+    max-width: 160px;
+}
+
+
+/* ========================================
+   LOGIN PAGE - RESPONSIVE LOGO
+   ======================================== */
+
+.login-logo {
+    position: static !important;
+    display: block !important;
+
+    width: 100% !important;
+    max-width: 300px !important;
+    height: auto !important;
+
+    margin: 0 auto 32px !important;
+    transform: none !important;
+}
+
+
+/* ========================================
+   LOGIN PAGE - INPUT FOCUS COLOR
+   ======================================== */
+
+form:has(#email):has(#password) input:focus-visible {
+    --tw-ring-color: #38BDF8 !important;
+    border-color: #38BDF8 !important;
+    outline-color: #38BDF8 !important;
+}
+
+
+/* ========================================
+   LOGIN PAGE - ORIGINAL IMAGE COLORS
+   ======================================== */
+
+body:has(#email):has(#password) img[src$="/favicon"] {
+    content: url("/public/icon.png") !important;
+    filter: none !important;
+}
+
+
+/* ========================================
+   LOGIN PAGE - RIGHT PANEL BACKGROUND
+   ======================================== */
+
+/* Light Mode */
+body:has(#email):has(#password) div.bg-muted:has(> img[src$="/favicon"]) {
+    background: linear-gradient(135deg, #F1F5F9, #BAE6FD) !important;
+}
+
+/* Dark Mode */
+.dark body:has(#email):has(#password) div.bg-muted:has(> img[src$="/favicon"]),
+body.dark:has(#email):has(#password) div.bg-muted:has(> img[src$="/favicon"]) {
+    background: linear-gradient(135deg, #111827, #164E63) !important;
+}
+
+
+/* ========================================
+   APPROVAL BUTTONS - APPROVE / REJECT
+   ======================================== */
+
+/* Both buttons */
+button[data-helpdesk-action="approve"],
+button[data-helpdesk-action="reject"] {
+    width: 120px !important;
+    height: 42px !important;
+    min-height: 42px !important;
+    padding: 0 16px !important;
+    color: #FFFFFF !important;
+    font-weight: 600 !important;
+    border: none !important;
+    border-radius: 8px !important;
+}
+
+/* Approve - Green */
+button[data-helpdesk-action="approve"] {
+    background-color: #16A34A !important;
+}
+
+button[data-helpdesk-action="approve"]:hover {
+    background-color: #15803D !important;
+}
+
+/* Reject - Red */
+button[data-helpdesk-action="reject"] {
+    background-color: #DC2626 !important;
+}
+
+button[data-helpdesk-action="reject"]:hover {
+    background-color: #B91C1C !important;
+}

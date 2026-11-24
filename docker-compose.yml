@@ -9,6 +9,9 @@ x-app-image: &app-image
   build: .
   image: supplyguard-ai:latest
   env_file: .env
+  # tini as PID 1: forwards SIGTERM to Python so `docker compose stop` exits
+  # cleanly (0) instead of being force-killed (137), and reaps child processes.
+  init: true
 
 x-app-env: &app-env
   POSTGRES_HOST: postgres
@@ -123,6 +126,7 @@ services:
   # The provided external information service, run unchanged (independently deployed).
   external-info:
     image: python:3.12.10-slim
+    init: true
     working_dir: /service
     volumes:
       - ./support-data/external_service:/service:ro
@@ -161,6 +165,7 @@ services:
   # filesystem, non-root, no capabilities, CPU/memory/process limits.
   sandbox:
     image: python:3.12.10-slim
+    init: true   # also reaps the processes agent commands leave behind
     volumes:
       - ./src/supplyguard_ai/sandbox/server.py:/sandbox/server.py:ro
     command: ["python", "/sandbox/server.py"]
