@@ -1,0 +1,2270 @@
+{
+  "pgvector": [
+    {
+      "id": "Q01",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 133.13040000139154,
+      "top": [
+        "DOC-PRO-03-v1",
+        "DOC-EM-INTERNAL-01",
+        "DOC-INC-HC-027",
+        "DOC-INC-HC-030",
+        "DOC-INC-HC-008"
+      ],
+      "relevant": [
+        "DOC-PRO-03-v1"
+      ]
+    },
+    {
+      "id": "Q02",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 85.3876000001037,
+      "top": [
+        "DOC-PRO-05-v1",
+        "DOC-INC-HC-002",
+        "DOC-PRO-02-v1",
+        "DOC-CON-S048-v1",
+        "DOC-INC-HC-024"
+      ],
+      "relevant": [
+        "DOC-PRO-05-v1"
+      ]
+    },
+    {
+      "id": "Q03",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 84.81329999995069,
+      "top": [
+        "DOC-PRO-06-v1",
+        "DOC-INC-HC-006",
+        "DOC-INC-HC-018",
+        "DOC-INC-HC-021",
+        "DOC-INC-HC-013"
+      ],
+      "relevant": [
+        "DOC-PRO-06-v1"
+      ]
+    },
+    {
+      "id": "Q04",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 92.48020000086399,
+      "top": [
+        "DOC-PRO-07-v1",
+        "DOC-NOT-022",
+        "DOC-CON-S048-v1",
+        "DOC-CON-S011-v1",
+        "DOC-CON-S018-v1"
+      ],
+      "relevant": [
+        "DOC-PRO-07-v1"
+      ]
+    },
+    {
+      "id": "Q05",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 99.407900001097,
+      "top": [
+        "DOC-PRO-02-v1",
+        "DOC-CON-S019-v1",
+        "DOC-CON-S058-v1",
+        "DOC-PRO-11-v1",
+        "DOC-CON-S059-v1"
+      ],
+      "relevant": [
+        "DOC-PRO-02-v1"
+      ]
+    },
+    {
+      "id": "Q06",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 91.81410000019241,
+      "top": [
+        "DOC-PRO-11-v1",
+        "DOC-PRO-02-v1",
+        "DOC-PRO-10-v1",
+        "DOC-PRO-04-v1",
+        "DOC-CON-S058-v1"
+      ],
+      "relevant": [
+        "DOC-PRO-11-v1"
+      ]
+    },
+    {
+      "id": "Q07",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 103.34069999953499,
+      "top": [
+        "DOC-PRO-04-v1",
+        "DOC-QUA-S003-v1",
+        "DOC-EM-BOREALIS-01",
+        "DOC-QUA-S058-v1",
+        "DOC-QUA-S014-v1"
+      ],
+      "relevant": [
+        "DOC-PRO-04-v1"
+      ]
+    },
+    {
+      "id": "Q08",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 75.63139999911073,
+      "top": [
+        "DOC-PRO-09-v1",
+        "DOC-PRO-01-v1",
+        "DOC-INC-HC-022",
+        "DOC-INC-HC-004",
+        "DOC-INC-HC-029"
+      ],
+      "relevant": [
+        "DOC-PRO-09-v1"
+      ]
+    },
+    {
+      "id": "Q09",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 97.4679000028118,
+      "top": [
+        "DOC-PRO-12-v1",
+        "DOC-PRO-05-v1",
+        "DOC-PRO-09-v1",
+        "DOC-INC-HC-005",
+        "DOC-INC-HC-017"
+      ],
+      "relevant": [
+        "DOC-PRO-12-v1"
+      ]
+    },
+    {
+      "id": "Q10",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 87.49879999959376,
+      "top": [
+        "DOC-PRO-08-v1",
+        "DOC-EM-CORDILLERA-01",
+        "DOC-PRO-07-v1",
+        "DOC-CON-S054-v1",
+        "DOC-CON-S011-v1"
+      ],
+      "relevant": [
+        "DOC-PRO-08-v1"
+      ]
+    },
+    {
+      "id": "Q11",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 73.50539999970351,
+      "top": [
+        "DOC-PRO-01-v1",
+        "DOC-PRO-02-v1",
+        "DOC-INC-HC-024",
+        "DOC-NOT-024",
+        "DOC-NOT-006"
+      ],
+      "relevant": [
+        "DOC-PRO-01-v1"
+      ]
+    },
+    {
+      "id": "Q12",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 80.49659999960568,
+      "top": [
+        "DOC-PRO-10-v1",
+        "DOC-PRO-11-v1",
+        "DOC-PRO-03-v1",
+        "DOC-EM-INTERNAL-01",
+        "DOC-PRO-02-v1"
+      ],
+      "relevant": [
+        "DOC-PRO-10-v1"
+      ]
+    },
+    {
+      "id": "Q13",
+      "type": "mc17",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 81.23179999893182,
+      "top": [
+        "DOC-EM-CORDILLERA-01",
+        "DOC-CON-S004-v1",
+        "DOC-QUA-S004-v1",
+        "DOC-CON-S020-v1",
+        "DOC-CON-S023-v1"
+      ],
+      "relevant": [
+        "DOC-CON-S004-v1",
+        "DOC-EM-CORDILLERA-01"
+      ]
+    },
+    {
+      "id": "Q14",
+      "type": "mc17",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 76.33820000046398,
+      "top": [
+        "DOC-CON-S001-v3",
+        "DOC-CON-S006-v1",
+        "DOC-CON-S024-v1",
+        "DOC-CON-S018-v1",
+        "DOC-CON-S044-v1"
+      ],
+      "relevant": [
+        "DOC-CON-S001-v3"
+      ]
+    },
+    {
+      "id": "Q15",
+      "type": "mc17",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 77.39700000092853,
+      "top": [
+        "DOC-EM-HELIOS-01",
+        "DOC-NOT-HELIOS-PRICE",
+        "DOC-CON-S002-v1",
+        "DOC-INC-HC-025",
+        "DOC-INC-HC-003"
+      ],
+      "relevant": [
+        "DOC-EM-HELIOS-01",
+        "DOC-CON-S002-v1"
+      ]
+    },
+    {
+      "id": "Q16",
+      "type": "mc17",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 84.72110000002431,
+      "top": [
+        "DOC-QUA-S003-v1",
+        "DOC-EM-BOREALIS-01",
+        "DOC-QUA-S040-v1",
+        "DOC-CON-S003-v1",
+        "DOC-QUA-S007-v1"
+      ],
+      "relevant": [
+        "DOC-QUA-S003-v1",
+        "DOC-EM-BOREALIS-01"
+      ]
+    },
+    {
+      "id": "Q17",
+      "type": "mc17",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 87.26530000058119,
+      "top": [
+        "DOC-EM-ATLAS-01",
+        "DOC-NOT-ATLAS-MC17",
+        "DOC-NOT-037",
+        "DOC-INC-HC-005",
+        "DOC-NOT-010"
+      ],
+      "relevant": [
+        "DOC-EM-ATLAS-01"
+      ]
+    },
+    {
+      "id": "Q18",
+      "type": "mc17",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 90.89809999932186,
+      "top": [
+        "DOC-NOT-ATLAS-MC17",
+        "DOC-EM-ATLAS-01",
+        "DOC-NOT-022",
+        "DOC-NOT-008",
+        "DOC-NOT-015"
+      ],
+      "relevant": [
+        "DOC-NOT-ATLAS-MC17"
+      ]
+    },
+    {
+      "id": "Q19",
+      "type": "mc17",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 91.92819999952917,
+      "top": [
+        "DOC-EM-DELTA-01",
+        "DOC-EM-HELIOS-01",
+        "DOC-CON-S005-v1",
+        "DOC-NOT-ATLAS-MC17",
+        "DOC-NOT-HELIOS-PRICE"
+      ],
+      "relevant": [
+        "DOC-EM-DELTA-01"
+      ]
+    },
+    {
+      "id": "Q20",
+      "type": "mc17",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 85.97720000034315,
+      "top": [
+        "DOC-EM-INTERNAL-01",
+        "DOC-PRO-03-v1",
+        "DOC-INC-HC-008",
+        "DOC-INC-HC-007",
+        "DOC-INC-HC-014"
+      ],
+      "relevant": [
+        "DOC-EM-INTERNAL-01",
+        "DOC-PRO-03-v1"
+      ]
+    },
+    {
+      "id": "Q21",
+      "type": "identifier",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 103.16400000010617,
+      "top": [
+        "DOC-INC-HC-012",
+        "DOC-INC-HC-029",
+        "DOC-INC-HC-017",
+        "DOC-INC-HC-025",
+        "DOC-INC-HC-004"
+      ],
+      "relevant": [
+        "DOC-INC-HC-012"
+      ]
+    },
+    {
+      "id": "Q22",
+      "type": "identifier",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 109.40470000059577,
+      "top": [
+        "DOC-EM-CORDILLERA-01",
+        "DOC-PRO-08-v1",
+        "DOC-INC-HC-023",
+        "DOC-INC-HC-007",
+        "DOC-INC-HC-010"
+      ],
+      "relevant": [
+        "DOC-EM-CORDILLERA-01"
+      ]
+    },
+    {
+      "id": "Q23",
+      "type": "identifier",
+      "recall": 0.0,
+      "mrr": 0.0,
+      "leaks": 0,
+      "latency_ms": 95.32800000306452,
+      "top": [
+        "DOC-INC-HC-030",
+        "DOC-INC-HC-004",
+        "DOC-QUA-S050-v1",
+        "DOC-QUA-S043-v1",
+        "DOC-QUA-S031-v1"
+      ],
+      "relevant": [
+        "DOC-QUA-S003-v1"
+      ]
+    },
+    {
+      "id": "Q24",
+      "type": "identifier",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 92.03130000241799,
+      "top": [
+        "DOC-NOT-022",
+        "DOC-NOT-036",
+        "DOC-NOT-035",
+        "DOC-NOT-011",
+        "DOC-NOT-ATLAS-MC17"
+      ],
+      "relevant": [
+        "DOC-NOT-022"
+      ]
+    },
+    {
+      "id": "Q25",
+      "type": "identifier",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 98.0003000004217,
+      "top": [
+        "DOC-INC-HC-017",
+        "DOC-INC-HC-005",
+        "DOC-INC-HC-003",
+        "DOC-INC-HC-012",
+        "DOC-INC-HC-025"
+      ],
+      "relevant": [
+        "DOC-INC-HC-005",
+        "DOC-INC-HC-017"
+      ]
+    },
+    {
+      "id": "Q26",
+      "type": "identifier",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 81.10699999815552,
+      "top": [
+        "DOC-QUA-S048-v1",
+        "DOC-QUA-S011-v1",
+        "DOC-QUA-S043-v1",
+        "DOC-QUA-S018-v1",
+        "DOC-QUA-S022-v1"
+      ],
+      "relevant": [
+        "DOC-QUA-S048-v1"
+      ]
+    },
+    {
+      "id": "Q27",
+      "type": "identifier",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 89.41000000049826,
+      "top": [
+        "DOC-CON-S005-v1",
+        "DOC-EM-DELTA-01",
+        "DOC-CON-S027-v1",
+        "DOC-QUA-S005-v1",
+        "DOC-CON-S060-v1"
+      ],
+      "relevant": [
+        "DOC-CON-S005-v1"
+      ]
+    },
+    {
+      "id": "Q28",
+      "type": "identifier",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 85.82290000049397,
+      "top": [
+        "DOC-INC-HC-030",
+        "DOC-INC-HC-016",
+        "DOC-QUA-S052-v1",
+        "DOC-CON-S052-v1",
+        "DOC-QUA-S026-v1"
+      ],
+      "relevant": [
+        "DOC-INC-HC-016",
+        "DOC-INC-HC-030"
+      ]
+    },
+    {
+      "id": "Q29",
+      "type": "identifier",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 89.26069999870379,
+      "top": [
+        "DOC-NOT-HELIOS-PRICE",
+        "DOC-CON-S002-v1",
+        "DOC-EM-HELIOS-01",
+        "DOC-QUA-S002-v1",
+        "DOC-INC-HC-025"
+      ],
+      "relevant": [
+        "DOC-NOT-HELIOS-PRICE"
+      ]
+    },
+    {
+      "id": "Q30",
+      "type": "identifier",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 85.69659999920987,
+      "top": [
+        "DOC-NOT-020",
+        "DOC-NOT-013",
+        "DOC-NOT-012",
+        "DOC-NOT-030",
+        "DOC-NOT-001"
+      ],
+      "relevant": [
+        "DOC-NOT-012",
+        "DOC-NOT-013",
+        "DOC-NOT-020",
+        "DOC-NOT-030"
+      ]
+    },
+    {
+      "id": "Q31",
+      "type": "scope",
+      "recall": null,
+      "mrr": null,
+      "leaks": 0,
+      "latency_ms": 73.01419999930658,
+      "top": [
+        "DOC-PRO-12-v1",
+        "DOC-CON-S060-v1",
+        "DOC-CON-S033-v1",
+        "DOC-CON-S027-v1",
+        "DOC-EM-CORDILLERA-01"
+      ],
+      "relevant": []
+    }
+  ],
+  "chroma": [
+    {
+      "id": "Q01",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 114.00899999716785,
+      "top": [
+        "DOC-PRO-03-v1",
+        "DOC-EM-INTERNAL-01",
+        "DOC-INC-HC-027",
+        "DOC-INC-HC-030",
+        "DOC-INC-HC-008"
+      ],
+      "relevant": [
+        "DOC-PRO-03-v1"
+      ]
+    },
+    {
+      "id": "Q02",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 104.32219999711378,
+      "top": [
+        "DOC-PRO-05-v1",
+        "DOC-INC-HC-002",
+        "DOC-PRO-02-v1",
+        "DOC-CON-S048-v1",
+        "DOC-INC-HC-024"
+      ],
+      "relevant": [
+        "DOC-PRO-05-v1"
+      ]
+    },
+    {
+      "id": "Q03",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 91.41660000022966,
+      "top": [
+        "DOC-PRO-06-v1",
+        "DOC-INC-HC-006",
+        "DOC-INC-HC-018",
+        "DOC-INC-HC-021",
+        "DOC-INC-HC-013"
+      ],
+      "relevant": [
+        "DOC-PRO-06-v1"
+      ]
+    },
+    {
+      "id": "Q04",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 111.05350000070757,
+      "top": [
+        "DOC-PRO-07-v1",
+        "DOC-NOT-022",
+        "DOC-CON-S048-v1",
+        "DOC-CON-S011-v1",
+        "DOC-CON-S018-v1"
+      ],
+      "relevant": [
+        "DOC-PRO-07-v1"
+      ]
+    },
+    {
+      "id": "Q05",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 104.06589999911375,
+      "top": [
+        "DOC-PRO-02-v1",
+        "DOC-CON-S019-v1",
+        "DOC-CON-S058-v1",
+        "DOC-PRO-11-v1",
+        "DOC-CON-S059-v1"
+      ],
+      "relevant": [
+        "DOC-PRO-02-v1"
+      ]
+    },
+    {
+      "id": "Q06",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 104.60510000120848,
+      "top": [
+        "DOC-PRO-11-v1",
+        "DOC-PRO-02-v1",
+        "DOC-PRO-10-v1",
+        "DOC-PRO-04-v1",
+        "DOC-CON-S058-v1"
+      ],
+      "relevant": [
+        "DOC-PRO-11-v1"
+      ]
+    },
+    {
+      "id": "Q07",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 97.18799999973271,
+      "top": [
+        "DOC-PRO-04-v1",
+        "DOC-QUA-S003-v1",
+        "DOC-EM-BOREALIS-01",
+        "DOC-QUA-S058-v1",
+        "DOC-QUA-S014-v1"
+      ],
+      "relevant": [
+        "DOC-PRO-04-v1"
+      ]
+    },
+    {
+      "id": "Q08",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 100.34110000196961,
+      "top": [
+        "DOC-PRO-09-v1",
+        "DOC-PRO-01-v1",
+        "DOC-INC-HC-022",
+        "DOC-INC-HC-004",
+        "DOC-INC-HC-029"
+      ],
+      "relevant": [
+        "DOC-PRO-09-v1"
+      ]
+    },
+    {
+      "id": "Q09",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 106.07630000231438,
+      "top": [
+        "DOC-PRO-12-v1",
+        "DOC-PRO-05-v1",
+        "DOC-PRO-09-v1",
+        "DOC-INC-HC-005",
+        "DOC-INC-HC-017"
+      ],
+      "relevant": [
+        "DOC-PRO-12-v1"
+      ]
+    },
+    {
+      "id": "Q10",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 109.61970000062138,
+      "top": [
+        "DOC-PRO-08-v1",
+        "DOC-EM-CORDILLERA-01",
+        "DOC-PRO-07-v1",
+        "DOC-CON-S054-v1",
+        "DOC-CON-S011-v1"
+      ],
+      "relevant": [
+        "DOC-PRO-08-v1"
+      ]
+    },
+    {
+      "id": "Q11",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 101.66109999772743,
+      "top": [
+        "DOC-PRO-01-v1",
+        "DOC-PRO-02-v1",
+        "DOC-INC-HC-024",
+        "DOC-NOT-024",
+        "DOC-NOT-006"
+      ],
+      "relevant": [
+        "DOC-PRO-01-v1"
+      ]
+    },
+    {
+      "id": "Q12",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 107.41349999807426,
+      "top": [
+        "DOC-PRO-10-v1",
+        "DOC-PRO-11-v1",
+        "DOC-PRO-03-v1",
+        "DOC-EM-INTERNAL-01",
+        "DOC-PRO-02-v1"
+      ],
+      "relevant": [
+        "DOC-PRO-10-v1"
+      ]
+    },
+    {
+      "id": "Q13",
+      "type": "mc17",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 109.97669999778736,
+      "top": [
+        "DOC-EM-CORDILLERA-01",
+        "DOC-CON-S004-v1",
+        "DOC-QUA-S004-v1",
+        "DOC-CON-S020-v1",
+        "DOC-CON-S023-v1"
+      ],
+      "relevant": [
+        "DOC-CON-S004-v1",
+        "DOC-EM-CORDILLERA-01"
+      ]
+    },
+    {
+      "id": "Q14",
+      "type": "mc17",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 110.13449999882141,
+      "top": [
+        "DOC-CON-S001-v3",
+        "DOC-CON-S006-v1",
+        "DOC-CON-S024-v1",
+        "DOC-CON-S018-v1",
+        "DOC-CON-S044-v1"
+      ],
+      "relevant": [
+        "DOC-CON-S001-v3"
+      ]
+    },
+    {
+      "id": "Q15",
+      "type": "mc17",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 113.64680000042426,
+      "top": [
+        "DOC-EM-HELIOS-01",
+        "DOC-NOT-HELIOS-PRICE",
+        "DOC-CON-S002-v1",
+        "DOC-INC-HC-025",
+        "DOC-INC-HC-003"
+      ],
+      "relevant": [
+        "DOC-EM-HELIOS-01",
+        "DOC-CON-S002-v1"
+      ]
+    },
+    {
+      "id": "Q16",
+      "type": "mc17",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 112.2864999997546,
+      "top": [
+        "DOC-QUA-S003-v1",
+        "DOC-EM-BOREALIS-01",
+        "DOC-QUA-S040-v1",
+        "DOC-CON-S003-v1",
+        "DOC-QUA-S007-v1"
+      ],
+      "relevant": [
+        "DOC-QUA-S003-v1",
+        "DOC-EM-BOREALIS-01"
+      ]
+    },
+    {
+      "id": "Q17",
+      "type": "mc17",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 104.28330000286223,
+      "top": [
+        "DOC-EM-ATLAS-01",
+        "DOC-NOT-ATLAS-MC17",
+        "DOC-NOT-037",
+        "DOC-INC-HC-005",
+        "DOC-NOT-010"
+      ],
+      "relevant": [
+        "DOC-EM-ATLAS-01"
+      ]
+    },
+    {
+      "id": "Q18",
+      "type": "mc17",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 118.74640000314685,
+      "top": [
+        "DOC-NOT-ATLAS-MC17",
+        "DOC-EM-ATLAS-01",
+        "DOC-NOT-022",
+        "DOC-NOT-008",
+        "DOC-NOT-015"
+      ],
+      "relevant": [
+        "DOC-NOT-ATLAS-MC17"
+      ]
+    },
+    {
+      "id": "Q19",
+      "type": "mc17",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 117.13099999906262,
+      "top": [
+        "DOC-EM-DELTA-01",
+        "DOC-EM-HELIOS-01",
+        "DOC-CON-S005-v1",
+        "DOC-NOT-ATLAS-MC17",
+        "DOC-NOT-HELIOS-PRICE"
+      ],
+      "relevant": [
+        "DOC-EM-DELTA-01"
+      ]
+    },
+    {
+      "id": "Q20",
+      "type": "mc17",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 132.98460000078194,
+      "top": [
+        "DOC-EM-INTERNAL-01",
+        "DOC-PRO-03-v1",
+        "DOC-INC-HC-008",
+        "DOC-INC-HC-007",
+        "DOC-INC-HC-014"
+      ],
+      "relevant": [
+        "DOC-EM-INTERNAL-01",
+        "DOC-PRO-03-v1"
+      ]
+    },
+    {
+      "id": "Q21",
+      "type": "identifier",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 119.82589999752236,
+      "top": [
+        "DOC-INC-HC-012",
+        "DOC-INC-HC-029",
+        "DOC-INC-HC-017",
+        "DOC-INC-HC-025",
+        "DOC-INC-HC-004"
+      ],
+      "relevant": [
+        "DOC-INC-HC-012"
+      ]
+    },
+    {
+      "id": "Q22",
+      "type": "identifier",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 105.83720000067842,
+      "top": [
+        "DOC-EM-CORDILLERA-01",
+        "DOC-PRO-08-v1",
+        "DOC-INC-HC-023",
+        "DOC-INC-HC-007",
+        "DOC-INC-HC-010"
+      ],
+      "relevant": [
+        "DOC-EM-CORDILLERA-01"
+      ]
+    },
+    {
+      "id": "Q23",
+      "type": "identifier",
+      "recall": 0.0,
+      "mrr": 0.0,
+      "leaks": 0,
+      "latency_ms": 102.06189999735216,
+      "top": [
+        "DOC-INC-HC-030",
+        "DOC-INC-HC-004",
+        "DOC-QUA-S050-v1",
+        "DOC-QUA-S043-v1",
+        "DOC-QUA-S031-v1"
+      ],
+      "relevant": [
+        "DOC-QUA-S003-v1"
+      ]
+    },
+    {
+      "id": "Q24",
+      "type": "identifier",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 103.91279999748804,
+      "top": [
+        "DOC-NOT-022",
+        "DOC-NOT-036",
+        "DOC-NOT-035",
+        "DOC-NOT-011",
+        "DOC-NOT-ATLAS-MC17"
+      ],
+      "relevant": [
+        "DOC-NOT-022"
+      ]
+    },
+    {
+      "id": "Q25",
+      "type": "identifier",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 157.90719999858993,
+      "top": [
+        "DOC-INC-HC-017",
+        "DOC-INC-HC-005",
+        "DOC-INC-HC-003",
+        "DOC-INC-HC-012",
+        "DOC-INC-HC-025"
+      ],
+      "relevant": [
+        "DOC-INC-HC-005",
+        "DOC-INC-HC-017"
+      ]
+    },
+    {
+      "id": "Q26",
+      "type": "identifier",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 105.538499999966,
+      "top": [
+        "DOC-QUA-S048-v1",
+        "DOC-QUA-S011-v1",
+        "DOC-QUA-S043-v1",
+        "DOC-QUA-S018-v1",
+        "DOC-QUA-S022-v1"
+      ],
+      "relevant": [
+        "DOC-QUA-S048-v1"
+      ]
+    },
+    {
+      "id": "Q27",
+      "type": "identifier",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 95.24760000203969,
+      "top": [
+        "DOC-CON-S005-v1",
+        "DOC-EM-DELTA-01",
+        "DOC-CON-S027-v1",
+        "DOC-QUA-S005-v1",
+        "DOC-CON-S060-v1"
+      ],
+      "relevant": [
+        "DOC-CON-S005-v1"
+      ]
+    },
+    {
+      "id": "Q28",
+      "type": "identifier",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 272.6304000025266,
+      "top": [
+        "DOC-INC-HC-030",
+        "DOC-INC-HC-016",
+        "DOC-QUA-S052-v1",
+        "DOC-CON-S052-v1",
+        "DOC-QUA-S026-v1"
+      ],
+      "relevant": [
+        "DOC-INC-HC-016",
+        "DOC-INC-HC-030"
+      ]
+    },
+    {
+      "id": "Q29",
+      "type": "identifier",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 238.2647000013094,
+      "top": [
+        "DOC-NOT-HELIOS-PRICE",
+        "DOC-CON-S002-v1",
+        "DOC-EM-HELIOS-01",
+        "DOC-QUA-S002-v1",
+        "DOC-INC-HC-025"
+      ],
+      "relevant": [
+        "DOC-NOT-HELIOS-PRICE"
+      ]
+    },
+    {
+      "id": "Q30",
+      "type": "identifier",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 189.63410000287695,
+      "top": [
+        "DOC-NOT-020",
+        "DOC-NOT-013",
+        "DOC-NOT-012",
+        "DOC-NOT-030",
+        "DOC-NOT-001"
+      ],
+      "relevant": [
+        "DOC-NOT-012",
+        "DOC-NOT-013",
+        "DOC-NOT-020",
+        "DOC-NOT-030"
+      ]
+    },
+    {
+      "id": "Q31",
+      "type": "scope",
+      "recall": null,
+      "mrr": null,
+      "leaks": 0,
+      "latency_ms": 113.50469999888446,
+      "top": [
+        "DOC-PRO-12-v1",
+        "DOC-CON-S060-v1",
+        "DOC-CON-S033-v1",
+        "DOC-CON-S027-v1",
+        "DOC-EM-CORDILLERA-01"
+      ],
+      "relevant": []
+    }
+  ],
+  "keyword": [
+    {
+      "id": "Q01",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 77.4797000012768,
+      "top": [
+        "DOC-PRO-03-v1",
+        "DOC-EM-INTERNAL-01",
+        "DOC-INC-HC-008",
+        "DOC-INC-HC-011",
+        "DOC-INC-HC-019"
+      ],
+      "relevant": [
+        "DOC-PRO-03-v1"
+      ]
+    },
+    {
+      "id": "Q02",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 78.34450000154902,
+      "top": [
+        "DOC-PRO-05-v1",
+        "DOC-INC-HC-009",
+        "DOC-INC-HC-012",
+        "DOC-INC-HC-022",
+        "DOC-NOT-003"
+      ],
+      "relevant": [
+        "DOC-PRO-05-v1"
+      ]
+    },
+    {
+      "id": "Q03",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 4.739500000141561,
+      "top": [
+        "DOC-PRO-06-v1",
+        "DOC-INC-HC-003",
+        "DOC-INC-HC-006",
+        "DOC-INC-HC-016",
+        "DOC-INC-HC-018"
+      ],
+      "relevant": [
+        "DOC-PRO-06-v1"
+      ]
+    },
+    {
+      "id": "Q04",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 60.70959999851766,
+      "top": [
+        "DOC-PRO-07-v1",
+        "DOC-INC-HC-025",
+        "DOC-INC-HC-005",
+        "DOC-INC-HC-017",
+        "DOC-NOT-ATLAS-MC17"
+      ],
+      "relevant": [
+        "DOC-PRO-07-v1"
+      ]
+    },
+    {
+      "id": "Q05",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 0.3333333333333333,
+      "leaks": 0,
+      "latency_ms": 77.27290000184439,
+      "top": [
+        "DOC-EM-CORDILLERA-01",
+        "DOC-EM-HELIOS-01",
+        "DOC-PRO-02-v1",
+        "DOC-EM-ATLAS-01",
+        "DOC-EM-BOREALIS-01"
+      ],
+      "relevant": [
+        "DOC-PRO-02-v1"
+      ]
+    },
+    {
+      "id": "Q06",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 50.86989999836078,
+      "top": [
+        "DOC-PRO-11-v1",
+        "DOC-PRO-02-v1",
+        "DOC-PRO-10-v1",
+        "DOC-CON-S001-v3",
+        "DOC-CON-S002-v1"
+      ],
+      "relevant": [
+        "DOC-PRO-11-v1"
+      ]
+    },
+    {
+      "id": "Q07",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 0.5,
+      "leaks": 0,
+      "latency_ms": 57.236699998611584,
+      "top": [
+        "DOC-QUA-S003-v1",
+        "DOC-PRO-04-v1",
+        "DOC-CON-S001-v3",
+        "DOC-CON-S002-v1",
+        "DOC-CON-S003-v1"
+      ],
+      "relevant": [
+        "DOC-PRO-04-v1"
+      ]
+    },
+    {
+      "id": "Q08",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 27.449500001239358,
+      "top": [
+        "DOC-PRO-09-v1",
+        "DOC-INC-HC-001",
+        "DOC-INC-HC-002",
+        "DOC-INC-HC-003",
+        "DOC-INC-HC-004"
+      ],
+      "relevant": [
+        "DOC-PRO-09-v1"
+      ]
+    },
+    {
+      "id": "Q09",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 29.903399998147506,
+      "top": [
+        "DOC-PRO-12-v1",
+        "DOC-PRO-09-v1",
+        "DOC-INC-HC-007",
+        "DOC-INC-HC-023",
+        "DOC-INC-HC-029"
+      ],
+      "relevant": [
+        "DOC-PRO-12-v1"
+      ]
+    },
+    {
+      "id": "Q10",
+      "type": "paraphrase",
+      "recall": 0.0,
+      "mrr": 0.125,
+      "leaks": 0,
+      "latency_ms": 28.25470000243513,
+      "top": [
+        "DOC-INC-HC-007",
+        "DOC-INC-HC-023",
+        "DOC-INC-HC-029",
+        "DOC-INC-HC-004",
+        "DOC-INC-HC-010"
+      ],
+      "relevant": [
+        "DOC-PRO-08-v1"
+      ]
+    },
+    {
+      "id": "Q11",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 49.058500000683125,
+      "top": [
+        "DOC-PRO-01-v1",
+        "DOC-NOT-004",
+        "DOC-NOT-006",
+        "DOC-NOT-015",
+        "DOC-NOT-017"
+      ],
+      "relevant": [
+        "DOC-PRO-01-v1"
+      ]
+    },
+    {
+      "id": "Q12",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 26.97260000059032,
+      "top": [
+        "DOC-PRO-10-v1",
+        "DOC-CON-S001-v3",
+        "DOC-CON-S002-v1",
+        "DOC-CON-S003-v1",
+        "DOC-CON-S004-v1"
+      ],
+      "relevant": [
+        "DOC-PRO-10-v1"
+      ]
+    },
+    {
+      "id": "Q13",
+      "type": "mc17",
+      "recall": 0.5,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 32.07160000238218,
+      "top": [
+        "DOC-CON-S004-v1",
+        "DOC-CON-S020-v1",
+        "DOC-CON-S023-v1",
+        "DOC-CON-S033-v1",
+        "DOC-CON-S034-v1"
+      ],
+      "relevant": [
+        "DOC-CON-S004-v1",
+        "DOC-EM-CORDILLERA-01"
+      ]
+    },
+    {
+      "id": "Q14",
+      "type": "mc17",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 44.08960000000661,
+      "top": [
+        "DOC-CON-S001-v3",
+        "DOC-CON-S006-v1",
+        "DOC-CON-S007-v1",
+        "DOC-CON-S010-v1",
+        "DOC-CON-S012-v1"
+      ],
+      "relevant": [
+        "DOC-CON-S001-v3"
+      ]
+    },
+    {
+      "id": "Q15",
+      "type": "mc17",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 41.37099999934435,
+      "top": [
+        "DOC-EM-HELIOS-01",
+        "DOC-CON-S002-v1",
+        "DOC-CON-S001-v3",
+        "DOC-CON-S003-v1",
+        "DOC-CON-S004-v1"
+      ],
+      "relevant": [
+        "DOC-EM-HELIOS-01",
+        "DOC-CON-S002-v1"
+      ]
+    },
+    {
+      "id": "Q16",
+      "type": "mc17",
+      "recall": 1.0,
+      "mrr": 0.5,
+      "leaks": 0,
+      "latency_ms": 61.75480000092648,
+      "top": [
+        "DOC-CON-S003-v1",
+        "DOC-QUA-S003-v1",
+        "DOC-EM-BOREALIS-01",
+        "DOC-CON-S001-v3",
+        "DOC-CON-S002-v1"
+      ],
+      "relevant": [
+        "DOC-QUA-S003-v1",
+        "DOC-EM-BOREALIS-01"
+      ]
+    },
+    {
+      "id": "Q17",
+      "type": "mc17",
+      "recall": 1.0,
+      "mrr": 0.5,
+      "leaks": 0,
+      "latency_ms": 47.51319999922998,
+      "top": [
+        "DOC-NOT-ATLAS-MC17",
+        "DOC-EM-ATLAS-01",
+        "DOC-CON-S001-v3",
+        "DOC-CON-S006-v1",
+        "DOC-NOT-001"
+      ],
+      "relevant": [
+        "DOC-EM-ATLAS-01"
+      ]
+    },
+    {
+      "id": "Q18",
+      "type": "mc17",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 40.46840000228258,
+      "top": [
+        "DOC-NOT-ATLAS-MC17",
+        "DOC-EM-ATLAS-01",
+        "DOC-CON-S001-v3",
+        "DOC-CON-S010-v1",
+        "DOC-CON-S006-v1"
+      ],
+      "relevant": [
+        "DOC-NOT-ATLAS-MC17"
+      ]
+    },
+    {
+      "id": "Q19",
+      "type": "mc17",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 38.185699999303324,
+      "top": [
+        "DOC-EM-DELTA-01",
+        "DOC-CON-S005-v1",
+        "DOC-EM-HELIOS-01",
+        "DOC-CON-S001-v3",
+        "DOC-CON-S002-v1"
+      ],
+      "relevant": [
+        "DOC-EM-DELTA-01"
+      ]
+    },
+    {
+      "id": "Q20",
+      "type": "mc17",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 30.377000002772547,
+      "top": [
+        "DOC-PRO-03-v1",
+        "DOC-EM-INTERNAL-01",
+        "DOC-CON-S001-v3",
+        "DOC-CON-S002-v1",
+        "DOC-CON-S004-v1"
+      ],
+      "relevant": [
+        "DOC-EM-INTERNAL-01",
+        "DOC-PRO-03-v1"
+      ]
+    },
+    {
+      "id": "Q21",
+      "type": "identifier",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 9.096000001591165,
+      "top": [
+        "DOC-INC-HC-012",
+        "DOC-INC-HC-001",
+        "DOC-INC-HC-002",
+        "DOC-INC-HC-003",
+        "DOC-INC-HC-004"
+      ],
+      "relevant": [
+        "DOC-INC-HC-012"
+      ]
+    },
+    {
+      "id": "Q22",
+      "type": "identifier",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 25.63690000170027,
+      "top": [
+        "DOC-EM-CORDILLERA-01",
+        "DOC-PRO-08-v1",
+        "DOC-CON-S001-v3",
+        "DOC-CON-S002-v1",
+        "DOC-CON-S003-v1"
+      ],
+      "relevant": [
+        "DOC-EM-CORDILLERA-01"
+      ]
+    },
+    {
+      "id": "Q23",
+      "type": "identifier",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 14.05729999896721,
+      "top": [
+        "DOC-QUA-S003-v1",
+        "DOC-CON-S003-v1",
+        "DOC-EM-BOREALIS-01",
+        "DOC-QUA-S001-v1",
+        "DOC-QUA-S002-v1"
+      ],
+      "relevant": [
+        "DOC-QUA-S003-v1"
+      ]
+    },
+    {
+      "id": "Q24",
+      "type": "identifier",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 41.14750000007916,
+      "top": [
+        "DOC-NOT-022",
+        "DOC-NOT-008",
+        "DOC-CON-S010-v1",
+        "DOC-CON-S021-v1",
+        "DOC-CON-S041-v1"
+      ],
+      "relevant": [
+        "DOC-NOT-022"
+      ]
+    },
+    {
+      "id": "Q25",
+      "type": "identifier",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 35.471099999995204,
+      "top": [
+        "DOC-INC-HC-005",
+        "DOC-INC-HC-017",
+        "DOC-INC-HC-001",
+        "DOC-INC-HC-003",
+        "DOC-INC-HC-004"
+      ],
+      "relevant": [
+        "DOC-INC-HC-005",
+        "DOC-INC-HC-017"
+      ]
+    },
+    {
+      "id": "Q26",
+      "type": "identifier",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 32.26780000113649,
+      "top": [
+        "DOC-QUA-S048-v1",
+        "DOC-QUA-S011-v1",
+        "DOC-QUA-S018-v1",
+        "DOC-QUA-S022-v1",
+        "DOC-QUA-S030-v1"
+      ],
+      "relevant": [
+        "DOC-QUA-S048-v1"
+      ]
+    },
+    {
+      "id": "Q27",
+      "type": "identifier",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 31.514500002231216,
+      "top": [
+        "DOC-CON-S005-v1",
+        "DOC-QUA-S005-v1",
+        "DOC-CON-S009-v1",
+        "DOC-CON-S011-v1",
+        "DOC-CON-S038-v1"
+      ],
+      "relevant": [
+        "DOC-CON-S005-v1"
+      ]
+    },
+    {
+      "id": "Q28",
+      "type": "identifier",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 13.18860000174027,
+      "top": [
+        "DOC-INC-HC-016",
+        "DOC-INC-HC-030",
+        "DOC-CON-S052-v1",
+        "DOC-INC-HC-015",
+        "DOC-INC-HC-022"
+      ],
+      "relevant": [
+        "DOC-INC-HC-016",
+        "DOC-INC-HC-030"
+      ]
+    },
+    {
+      "id": "Q29",
+      "type": "identifier",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 32.812099998409394,
+      "top": [
+        "DOC-NOT-HELIOS-PRICE",
+        "DOC-CON-S002-v1",
+        "DOC-NOT-002",
+        "DOC-NOT-040",
+        "DOC-NOT-004"
+      ],
+      "relevant": [
+        "DOC-NOT-HELIOS-PRICE"
+      ]
+    },
+    {
+      "id": "Q30",
+      "type": "identifier",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 47.56189999898197,
+      "top": [
+        "DOC-NOT-012",
+        "DOC-NOT-013",
+        "DOC-NOT-020",
+        "DOC-NOT-030",
+        "DOC-NOT-026"
+      ],
+      "relevant": [
+        "DOC-NOT-012",
+        "DOC-NOT-013",
+        "DOC-NOT-020",
+        "DOC-NOT-030"
+      ]
+    },
+    {
+      "id": "Q31",
+      "type": "scope",
+      "recall": null,
+      "mrr": null,
+      "leaks": 0,
+      "latency_ms": 23.657199999433942,
+      "top": [
+        "DOC-PRO-10-v1",
+        "DOC-PRO-12-v1",
+        "DOC-CON-S001-v3",
+        "DOC-CON-S002-v1",
+        "DOC-CON-S003-v1"
+      ],
+      "relevant": []
+    }
+  ],
+  "hybrid": [
+    {
+      "id": "Q01",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 122.64839999988908,
+      "top": [
+        "DOC-PRO-03-v1",
+        "DOC-EM-INTERNAL-01",
+        "DOC-INC-HC-008",
+        "DOC-INC-HC-027",
+        "DOC-INC-HC-011"
+      ],
+      "relevant": [
+        "DOC-PRO-03-v1"
+      ]
+    },
+    {
+      "id": "Q02",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 168.01420000047074,
+      "top": [
+        "DOC-PRO-05-v1",
+        "DOC-INC-HC-009",
+        "DOC-INC-HC-022",
+        "DOC-INC-HC-012",
+        "DOC-NOT-013"
+      ],
+      "relevant": [
+        "DOC-PRO-05-v1"
+      ]
+    },
+    {
+      "id": "Q03",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 94.73649999927147,
+      "top": [
+        "DOC-PRO-06-v1",
+        "DOC-INC-HC-006",
+        "DOC-INC-HC-018",
+        "DOC-INC-HC-003",
+        "DOC-INC-HC-020"
+      ],
+      "relevant": [
+        "DOC-PRO-06-v1"
+      ]
+    },
+    {
+      "id": "Q04",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 130.81839999722433,
+      "top": [
+        "DOC-PRO-07-v1",
+        "DOC-INC-HC-025",
+        "DOC-CON-S007-v1",
+        "DOC-CON-S001-v3",
+        "DOC-CON-S010-v1"
+      ],
+      "relevant": [
+        "DOC-PRO-07-v1"
+      ]
+    },
+    {
+      "id": "Q05",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 149.8701999989862,
+      "top": [
+        "DOC-PRO-02-v1",
+        "DOC-PRO-11-v1",
+        "DOC-EM-CORDILLERA-01",
+        "DOC-CON-S019-v1",
+        "DOC-EM-HELIOS-01"
+      ],
+      "relevant": [
+        "DOC-PRO-02-v1"
+      ]
+    },
+    {
+      "id": "Q06",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 165.87860000072396,
+      "top": [
+        "DOC-PRO-11-v1",
+        "DOC-PRO-02-v1",
+        "DOC-PRO-10-v1",
+        "DOC-CON-S001-v3",
+        "DOC-CON-S005-v1"
+      ],
+      "relevant": [
+        "DOC-PRO-11-v1"
+      ]
+    },
+    {
+      "id": "Q07",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 166.90440000093076,
+      "top": [
+        "DOC-PRO-04-v1",
+        "DOC-QUA-S003-v1",
+        "DOC-EM-BOREALIS-01",
+        "DOC-CON-S001-v3",
+        "DOC-QUA-S058-v1"
+      ],
+      "relevant": [
+        "DOC-PRO-04-v1"
+      ]
+    },
+    {
+      "id": "Q08",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 153.42940000118688,
+      "top": [
+        "DOC-PRO-09-v1",
+        "DOC-INC-HC-004",
+        "DOC-INC-HC-001",
+        "DOC-INC-HC-003",
+        "DOC-INC-HC-005"
+      ],
+      "relevant": [
+        "DOC-PRO-09-v1"
+      ]
+    },
+    {
+      "id": "Q09",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 165.55420000076992,
+      "top": [
+        "DOC-PRO-12-v1",
+        "DOC-PRO-09-v1",
+        "DOC-PRO-05-v1",
+        "DOC-INC-HC-005",
+        "DOC-INC-HC-001"
+      ],
+      "relevant": [
+        "DOC-PRO-12-v1"
+      ]
+    },
+    {
+      "id": "Q10",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 0.5,
+      "leaks": 0,
+      "latency_ms": 142.5470000031055,
+      "top": [
+        "DOC-INC-HC-007",
+        "DOC-PRO-08-v1",
+        "DOC-INC-HC-023",
+        "DOC-INC-HC-010",
+        "DOC-CON-S011-v1"
+      ],
+      "relevant": [
+        "DOC-PRO-08-v1"
+      ]
+    },
+    {
+      "id": "Q11",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 212.51530000154162,
+      "top": [
+        "DOC-PRO-01-v1",
+        "DOC-NOT-004",
+        "DOC-NOT-006",
+        "DOC-NOT-024",
+        "DOC-NOT-032"
+      ],
+      "relevant": [
+        "DOC-PRO-01-v1"
+      ]
+    },
+    {
+      "id": "Q12",
+      "type": "paraphrase",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 221.72040000077686,
+      "top": [
+        "DOC-PRO-10-v1",
+        "DOC-CON-S001-v3",
+        "DOC-CON-S011-v1",
+        "DOC-CON-S010-v1",
+        "DOC-CON-S006-v1"
+      ],
+      "relevant": [
+        "DOC-PRO-10-v1"
+      ]
+    },
+    {
+      "id": "Q13",
+      "type": "mc17",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 184.192400000029,
+      "top": [
+        "DOC-CON-S004-v1",
+        "DOC-CON-S020-v1",
+        "DOC-EM-CORDILLERA-01",
+        "DOC-CON-S023-v1",
+        "DOC-CON-S033-v1"
+      ],
+      "relevant": [
+        "DOC-CON-S004-v1",
+        "DOC-EM-CORDILLERA-01"
+      ]
+    },
+    {
+      "id": "Q14",
+      "type": "mc17",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 292.3807000006491,
+      "top": [
+        "DOC-CON-S001-v3",
+        "DOC-CON-S006-v1",
+        "DOC-CON-S007-v1",
+        "DOC-CON-S019-v1",
+        "DOC-CON-S018-v1"
+      ],
+      "relevant": [
+        "DOC-CON-S001-v3"
+      ]
+    },
+    {
+      "id": "Q15",
+      "type": "mc17",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 236.17519999970682,
+      "top": [
+        "DOC-CON-S002-v1",
+        "DOC-CON-S012-v1",
+        "DOC-CON-S015-v1",
+        "DOC-EM-HELIOS-01",
+        "DOC-CON-S001-v3"
+      ],
+      "relevant": [
+        "DOC-EM-HELIOS-01",
+        "DOC-CON-S002-v1"
+      ]
+    },
+    {
+      "id": "Q16",
+      "type": "mc17",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 194.8088999997708,
+      "top": [
+        "DOC-QUA-S003-v1",
+        "DOC-CON-S003-v1",
+        "DOC-EM-BOREALIS-01",
+        "DOC-QUA-S040-v1",
+        "DOC-CON-S001-v3"
+      ],
+      "relevant": [
+        "DOC-QUA-S003-v1",
+        "DOC-EM-BOREALIS-01"
+      ]
+    },
+    {
+      "id": "Q17",
+      "type": "mc17",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 181.86550000245916,
+      "top": [
+        "DOC-EM-ATLAS-01",
+        "DOC-NOT-ATLAS-MC17",
+        "DOC-CON-S001-v3",
+        "DOC-CON-S006-v1",
+        "DOC-CON-S002-v1"
+      ],
+      "relevant": [
+        "DOC-EM-ATLAS-01"
+      ]
+    },
+    {
+      "id": "Q18",
+      "type": "mc17",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 162.52069999973173,
+      "top": [
+        "DOC-NOT-ATLAS-MC17",
+        "DOC-CON-S001-v3",
+        "DOC-EM-ATLAS-01",
+        "DOC-CON-S006-v1",
+        "DOC-CON-S010-v1"
+      ],
+      "relevant": [
+        "DOC-NOT-ATLAS-MC17"
+      ]
+    },
+    {
+      "id": "Q19",
+      "type": "mc17",
+      "recall": 1.0,
+      "mrr": 0.25,
+      "leaks": 0,
+      "latency_ms": 177.9236000002129,
+      "top": [
+        "DOC-CON-S005-v1",
+        "DOC-CON-S018-v1",
+        "DOC-CON-S027-v1",
+        "DOC-EM-DELTA-01",
+        "DOC-CON-S001-v3"
+      ],
+      "relevant": [
+        "DOC-EM-DELTA-01"
+      ]
+    },
+    {
+      "id": "Q20",
+      "type": "mc17",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 137.92130000001634,
+      "top": [
+        "DOC-EM-INTERNAL-01",
+        "DOC-PRO-03-v1",
+        "DOC-INC-HC-008",
+        "DOC-INC-HC-007",
+        "DOC-CON-S001-v3"
+      ],
+      "relevant": [
+        "DOC-EM-INTERNAL-01",
+        "DOC-PRO-03-v1"
+      ]
+    },
+    {
+      "id": "Q21",
+      "type": "identifier",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 135.05890000305953,
+      "top": [
+        "DOC-INC-HC-012",
+        "DOC-INC-HC-002",
+        "DOC-INC-HC-004",
+        "DOC-INC-HC-003",
+        "DOC-INC-HC-005"
+      ],
+      "relevant": [
+        "DOC-INC-HC-012"
+      ]
+    },
+    {
+      "id": "Q22",
+      "type": "identifier",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 154.24610000263783,
+      "top": [
+        "DOC-EM-CORDILLERA-01",
+        "DOC-PRO-08-v1",
+        "DOC-CON-S002-v1",
+        "DOC-CON-S004-v1",
+        "DOC-CON-S011-v1"
+      ],
+      "relevant": [
+        "DOC-EM-CORDILLERA-01"
+      ]
+    },
+    {
+      "id": "Q23",
+      "type": "identifier",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 156.1053000004904,
+      "top": [
+        "DOC-QUA-S003-v1",
+        "DOC-QUA-S005-v1",
+        "DOC-QUA-S018-v1",
+        "DOC-QUA-S007-v1",
+        "DOC-QUA-S010-v1"
+      ],
+      "relevant": [
+        "DOC-QUA-S003-v1"
+      ]
+    },
+    {
+      "id": "Q24",
+      "type": "identifier",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 147.58169999913662,
+      "top": [
+        "DOC-NOT-022",
+        "DOC-CON-S010-v1",
+        "DOC-NOT-011",
+        "DOC-NOT-ATLAS-MC17",
+        "DOC-NOT-008"
+      ],
+      "relevant": [
+        "DOC-NOT-022"
+      ]
+    },
+    {
+      "id": "Q25",
+      "type": "identifier",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 175.1421000008122,
+      "top": [
+        "DOC-INC-HC-005",
+        "DOC-INC-HC-017",
+        "DOC-INC-HC-003",
+        "DOC-INC-HC-012",
+        "DOC-INC-HC-004"
+      ],
+      "relevant": [
+        "DOC-INC-HC-005",
+        "DOC-INC-HC-017"
+      ]
+    },
+    {
+      "id": "Q26",
+      "type": "identifier",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 210.3495000010298,
+      "top": [
+        "DOC-QUA-S048-v1",
+        "DOC-QUA-S011-v1",
+        "DOC-QUA-S018-v1",
+        "DOC-QUA-S043-v1",
+        "DOC-QUA-S022-v1"
+      ],
+      "relevant": [
+        "DOC-QUA-S048-v1"
+      ]
+    },
+    {
+      "id": "Q27",
+      "type": "identifier",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 109.27210000227205,
+      "top": [
+        "DOC-CON-S005-v1",
+        "DOC-QUA-S005-v1",
+        "DOC-CON-S060-v1",
+        "DOC-CON-S050-v1",
+        "DOC-EM-DELTA-01"
+      ],
+      "relevant": [
+        "DOC-CON-S005-v1"
+      ]
+    },
+    {
+      "id": "Q28",
+      "type": "identifier",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 264.4497000001138,
+      "top": [
+        "DOC-INC-HC-030",
+        "DOC-INC-HC-016",
+        "DOC-CON-S052-v1",
+        "DOC-QUA-S052-v1",
+        "DOC-NOT-016"
+      ],
+      "relevant": [
+        "DOC-INC-HC-016",
+        "DOC-INC-HC-030"
+      ]
+    },
+    {
+      "id": "Q29",
+      "type": "identifier",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 134.49620000028517,
+      "top": [
+        "DOC-NOT-HELIOS-PRICE",
+        "DOC-CON-S002-v1",
+        "DOC-QUA-S002-v1",
+        "DOC-NOT-004",
+        "DOC-EM-HELIOS-01"
+      ],
+      "relevant": [
+        "DOC-NOT-HELIOS-PRICE"
+      ]
+    },
+    {
+      "id": "Q30",
+      "type": "identifier",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "leaks": 0,
+      "latency_ms": 181.7856000016036,
+      "top": [
+        "DOC-NOT-012",
+        "DOC-NOT-013",
+        "DOC-NOT-020",
+        "DOC-NOT-030",
+        "DOC-NOT-026"
+      ],
+      "relevant": [
+        "DOC-NOT-012",
+        "DOC-NOT-013",
+        "DOC-NOT-020",
+        "DOC-NOT-030"
+      ]
+    },
+    {
+      "id": "Q31",
+      "type": "scope",
+      "recall": null,
+      "mrr": null,
+      "leaks": 0,
+      "latency_ms": 170.46189999746275,
+      "top": [
+        "DOC-PRO-12-v1",
+        "DOC-PRO-10-v1",
+        "DOC-CON-S005-v1",
+        "DOC-CON-S009-v1",
+        "DOC-CON-S014-v1"
+      ],
+      "relevant": []
+    }
+  ]
+}

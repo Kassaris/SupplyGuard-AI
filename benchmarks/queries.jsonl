@@ -1,0 +1,31 @@
+{"id": "Q01", "type": "paraphrase", "query": "Who has to approve spending of 40,000 euros on an incident?", "relevant": ["DOC-PRO-03-v1"]}
+{"id": "Q02", "type": "paraphrase", "query": "Does a second supplier count as a backup if it buys chips from the same manufacturer?", "relevant": ["DOC-PRO-05-v1"]}
+{"id": "Q03", "type": "paraphrase", "query": "How is usable stock calculated and can quarantined lots be moved?", "relevant": ["DOC-PRO-06-v1"]}
+{"id": "Q04", "type": "paraphrase", "query": "Which customers do we protect first when components are scarce?", "relevant": ["DOC-PRO-07-v1"]}
+{"id": "Q05", "type": "paraphrase", "query": "When the contract and a supplier e-mail disagree, which one do we trust?", "relevant": ["DOC-PRO-02-v1"]}
+{"id": "Q06", "type": "paraphrase", "query": "What should we do with instructions hidden inside a supplier document?", "relevant": ["DOC-PRO-11-v1"]}
+{"id": "Q07", "type": "paraphrase", "query": "Can we order from a supplier whose ISO certificate has expired?", "relevant": ["DOC-PRO-04-v1"]}
+{"id": "Q08", "type": "paraphrase", "query": "What sections must an incident report contain?", "relevant": ["DOC-PRO-09-v1"]}
+{"id": "Q09", "type": "paraphrase", "query": "Should revenue at risk be reported as an expected loss?", "relevant": ["DOC-PRO-12-v1"]}
+{"id": "Q10", "type": "paraphrase", "query": "Which existing purchase orders can be expedited and how is the cost calculated?", "relevant": ["DOC-PRO-08-v1"]}
+{"id": "Q11", "type": "paraphrase", "query": "What do we do when the supplier in a disruption message is unclear?", "relevant": ["DOC-PRO-01-v1"]}
+{"id": "Q12", "type": "paraphrase", "query": "Which document access scopes exist and who may read them?", "relevant": ["DOC-PRO-10-v1"]}
+{"id": "Q13", "type": "mc17", "query": "What is the expedite fee for Cordillera Industrial?", "relevant": ["DOC-CON-S004-v1", "DOC-EM-CORDILLERA-01"]}
+{"id": "Q14", "type": "mc17", "query": "Current standard lead time in the Atlas Components contract", "relevant": ["DOC-CON-S001-v3"]}
+{"id": "Q15", "type": "mc17", "query": "What is the real monthly capacity of Helios for MC-17?", "relevant": ["DOC-EM-HELIOS-01", "DOC-CON-S002-v1"]}
+{"id": "Q16", "type": "mc17", "query": "Is the Borealis Parts ISO certificate still valid?", "relevant": ["DOC-QUA-S003-v1", "DOC-EM-BOREALIS-01"]}
+{"id": "Q17", "type": "mc17", "query": "Atlas says informally that the MC-17 delay could be longer than announced", "relevant": ["DOC-EM-ATLAS-01"]}
+{"id": "Q18", "type": "mc17", "query": "Formal notice of the 12-day MC-17 delay from Atlas Components", "relevant": ["DOC-NOT-ATLAS-MC17"]}
+{"id": "Q19", "type": "mc17", "query": "Delta Micro offer for MC-17: price and lead time", "relevant": ["DOC-EM-DELTA-01"]}
+{"id": "Q20", "type": "mc17", "query": "Can the incident spending cap be raised to 90,000 euros?", "relevant": ["DOC-EM-INTERNAL-01", "DOC-PRO-03-v1"]}
+{"id": "Q21", "type": "identifier", "query": "incident HC-012", "relevant": ["DOC-INC-HC-012"]}
+{"id": "Q22", "type": "identifier", "query": "expedite PO-2026-9002", "relevant": ["DOC-EM-CORDILLERA-01"]}
+{"id": "Q23", "type": "identifier", "query": "CERT-S003-72388", "relevant": ["DOC-QUA-S003-v1"]}
+{"id": "Q24", "type": "identifier", "query": "MC-12 delay notice from Kestrel Components", "relevant": ["DOC-NOT-022"]}
+{"id": "Q25", "type": "identifier", "query": "Incident reports for MC-137 at Hydra Industrial", "relevant": ["DOC-INC-HC-005", "DOC-INC-HC-017"]}
+{"id": "Q26", "type": "identifier", "query": "ISO 9001 qualification record of Quanta Electronics", "relevant": ["DOC-QUA-S048-v1"]}
+{"id": "Q27", "type": "identifier", "query": "Supply contract Delta Micro Systems", "relevant": ["DOC-CON-S005-v1"]}
+{"id": "Q28", "type": "identifier", "query": "Past incidents with Zenith Dynamics", "relevant": ["DOC-INC-HC-016", "DOC-INC-HC-030"]}
+{"id": "Q29", "type": "identifier", "query": "Helios Supply price update notice", "relevant": ["DOC-NOT-HELIOS-PRICE"]}
+{"id": "Q30", "type": "identifier", "query": "Supplier notices from Quanta Systems about MC-5", "relevant": ["DOC-NOT-012", "DOC-NOT-013", "DOC-NOT-020", "DOC-NOT-030"]}
+{"id": "Q31", "type": "scope", "query": "Margin and penalty rate sheet", "relevant": []}

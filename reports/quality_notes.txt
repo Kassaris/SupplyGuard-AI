@@ -1,0 +1,184 @@
+SUPPLYGUARD AI - QUALITY NOTES
+==============================
+
+Findings, decisions and open points from the quality work (tests, integration
+checks, retrieval benchmark). Numbers refer to the provided support-data.
+
+
+1. WHAT IS COVERED
+------------------
+
+  Area                          Where                              Result
+  ----------------------------  ---------------------------------  ---------------------------
+  Business calculations         tests/test_calculations.py         pass
+  MC-17 golden scenario         tests/test_golden_scenario.py      3,200 / 5,350 / 77 / ~EUR 30,378
+  Data package completeness     tests/test_data_package.py         pass
+  Document access scopes        tests/test_document_access.py      pass
+  Scopes in every search mode   tests/test_retrieval_scopes.py     pass, 0 leaks
+  Planted data problems         tests/test_data_quality.py         pass + 2 xfail (known gap)
+  Loaded databases              tests/test_databases.py            11 integration tests, pass
+  Retrieval benchmark           benchmarks/, reports/              hybrid recall@5 = 1.0
+
+  uv run pytest                   -> unit tests, no Docker, no LLM
+  uv run pytest -m integration    -> database tests, needs Docker
+
+
+2. DECISIONS AND WHY
+--------------------
+
+2.1 Unit tests never call an LLM or the network.
+    Numbers (stock, shortfall, cost, approval tier) must come from code, not
+    from the model. Tests that call a model are slow, cost money and give
+    different answers on each run. Where an embedding model is needed in a unit
+    test we use DeterministicFakeEmbedding: the search logic and scope filters
+    are the real code, only the vectors are fake.
+
+2.2 Integration tests are separated with a pytest marker.
+    They need Postgres, Neo4j and ChromaDB. A plain `pytest` skips them, so
+    anyone can run the unit tests on a laptop without Docker.
+
+2.3 Integration tests compare every store with the source CSV files.
+    Row, node and relationship counts must equal the CSV row counts. This
+    catches rows lost during loading (e.g. rows with blank ids or bad dates)
+    and also catches duplicates if a loader is run twice.
+
+2.4 Known gaps are marked xfail(strict=True), not deleted.
+    The two supplier-name tests fail today because of a real gap (section 3.1).
+    xfail keeps the suite green and documents the gap; strict=True makes the
+    suite fail as soon as the gap is fixed, so the marker cannot be forgotten.
+
+2.5 Fewer, meaningful tests over many repeated ones.
+    The first version of the retrieval scope tests ran 3 questions x 4 modes
+    per check (29 tests). We kept one question per check - the one that would
+    actually return the forbidden document if the filter broke - and still run
+    it in all 4 modes (13 tests). The same review took the whole new set from
+    51 to 30 tests (integration: 14 to 11). Same coverage, easier to maintain.
+
+2.6 Retrieval benchmark: 31 hand-written questions.
+    - Large enough to show a difference between the modes. With ~5 questions
+      every mode scored the same; with 31 it is clear that embeddings miss exact
+      identifiers and keyword search misses paraphrases.
+    - Small enough that every expected answer was checked by opening the
+      document. A wrong "expected document" would distort the scores more than
+      a smaller set does.
+    - Covers four kinds of question: 12 paraphrases of procedures, 8 about the
+      MC-17 scenario, 10 with identifiers (HC-012, CERT-S003-72388,
+      PO-2026-9002 ...), 1 scope check (finance-confidential document).
+    - The LangSmith guide suggests starting with 10-20 representative cases.
+
+2.7 One question was replaced to avoid overfitting.
+    The team's hybrid search contains an "identifiers first" rule that was
+    designed around the question "incident HC-026" (see retrieval/service.py).
+    Keeping that exact question would measure the case the code was tuned on,
+    so it was replaced with "incident HC-012".
+
+2.8 Benchmark metrics reuse the team's retrieval/metrics.py.
+    One implementation of recall@k / MRR / leaks for the app and the benchmark,
+    so the numbers cannot drift apart.
+
+2.9 Latency is measured without the embedding call.
+    Every question is embedded once before timing. Otherwise the first mode
+    pays the embedding API call and the others hit the cache, which would make
+    pgvector look slower than ChromaDB for no real reason.
+
+2.10 Results are stored twice: reports/ and LangSmith.
+    reports/retrieval_benchmark.md is readable without an account; the
+    LangSmith experiments (retrieval-pgvector / -chroma / -keyword / -hybrid on
+    dataset supplyguard-retrieval-benchmark) allow side-by-side comparison per
+    question. LangSmith scores were read back and match the local table.
+
+
+3. PROBLEMS FOUND
+-----------------
+
+3.1 Supplier names with company suffixes are not resolved.
+    resolve_supplier("Orion Supply Ltd") returns nothing (expected S016). The
+    function compares the typed text as a substring of the stored name, and
+    "orion supply ltd" is longer than "orion supply". The data contains 22
+    planted name variants of this kind ('... Ltd', '... Comp.').
+    Fix proposed: normalise both sides (lower case, drop punctuation, drop
+    'ltd'/'inc', map 'comp' -> 'components'; keep 'gmbh', it is part of
+    'Atlas Logistik GmbH'). Tracked as a GitHub issue; covered by 2 xfail tests.
+
+3.2 Embeddings cannot tell identifiers apart.
+    pgvector and ChromaDB returned other incident reports for "incident HC-026"
+    and other qualification records for "CERT-S003-72388". To an embedding,
+    HC-026 and HC-029 look almost the same. Whether an identifier is found is
+    luck: HC-012 was found, HC-026 was not.
+
+3.3 Keyword search misses paraphrases.
+    "Which existing purchase orders can be expedited?" did not return the
+    expedite procedure (DOC-PRO-08), because the procedure uses different words.
+
+3.4 Hybrid fixes both, with one weak spot.
+    Hybrid found the expected document in the top 5 for all 30 questions.
+    Weakest result: the Delta Micro offer e-mail ranked 4th behind contracts
+    (Q19). It is found, but a user reading only the first result would miss it.
+
+3.5 pgvector and ChromaDB give identical results.
+    Expected: both hold the same vectors (verified by an integration test).
+    The difference between them is operational (Postgres extension vs separate
+    service), not retrieval quality.
+
+3.6 The graph has more disconnected entities than the manifest lists.
+    The manifest names S058-S060 as suppliers without components and
+    MC-296..MC-300 as components without products. Neo4j also shows S006
+    (Atlas Logistik GmbH) supplying nothing, and 46 components in total that
+    are used in no product. Not a loading error - the source CSVs say the same -
+    but the agent should not assume the manifest list is complete.
+
+3.7 Windows environment issues that broke the tools.
+    - The antivirus sets SSLKEYLOGFILE, which crashed the Postgres/Neo4j
+      drivers (OPENSSL_Uplink). Removed in tests/conftest.py and at the start
+      of the benchmark scripts.
+    - The antivirus also inspects HTTPS, so Python did not trust LangSmith's
+      certificate. Fixed with truststore (OS certificate store), as in
+      scripts/check_langsmith.py. uv needs --system-certs for the same reason.
+
+3.8 Smaller code observations.
+    - retrieval/metrics.py refers to tests/test_benchmark_metrics.py, which does
+      not exist.
+    - mode="graph" is not wired in build_postgres_retrieval, so the GraphRAG
+      path could not be benchmarked.
+    - Earlier: the procurement MCP server imported services/container.py before
+      it was in main, so its write tools could not be tested at that time.
+
+
+4. NOT TESTED YET - AND HOW IT COULD BE DONE
+-------------------------------------------
+
+4.1 Re-running the document ingestion (pgvector / ChromaDB).
+    Why not: doc-ingest calls the Azure embedding API (cost on every run).
+    What was done instead: data-load (Postgres) and neo4j-seed (Neo4j) were
+    re-run and the integration tests still passed - no duplicates.
+    How it could be done without cost: ingest() already accepts an Embeddings
+    object and temporary table/collection names (names=...). A test can call it
+    twice with DeterministicFakeEmbedding and throw-away names, assert the
+    chunk count stays 272 (not 544), and drop the temporary tables. Tracked as
+    a GitHub issue.
+
+4.2 Graph mode in the benchmark.
+    How: pass the Neo4j graph service to RetrievalService (graph=...) and add
+    "graph" to MODES.
+
+4.3 Agent-level work, waiting for the workflow in main.
+    - The 105 evaluation cases as a LangSmith dataset with code evaluators for
+      numbers and LLM-as-judge for behaviour (clarify, refuse, ignore injection).
+    - Red-team scenarios as permanent automated tests: prompt injection,
+      data exfiltration (finance scope), tool abuse (order from Borealis,
+      over the EUR 75,000 cap), payload change after approval.
+    - Restart at approval_pending: resume from checkpoint, no duplicate PO.
+    - Manual test plan in the Chainlit UI with a LangSmith trace per run.
+
+
+5. LIMITATIONS OF THE NUMBERS
+-----------------------------
+
+- The benchmark questions were written by us while reading the documents.
+  31 questions show a trend, not statistical certainty: one question changes
+  recall by about 3 percentage points.
+- Latency varies between runs (keyword: 30-61 ms across four runs). Only the
+  broad picture holds: all modes answer in well under 200 ms; hybrid is a bit
+  slower because it runs two searches.
+- The evaluation cases in support-data/evaluation are held out: nothing in
+  this work was tuned on them.
