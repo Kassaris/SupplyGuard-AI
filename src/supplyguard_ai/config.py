@@ -9,14 +9,6 @@ module read `os.environ` on its own we would end up with:
   * typos in env-var names that fail silently (returns None),
   * no type conversion ("75000" is a string, not an int),
   * secrets accidentally printed in logs.
-
-WHY pydantic-settings (and not plain python-dotenv)
----------------------------------------------------
-`pydantic-settings` (Week 1, "Secrets and .env" + "Pydantic v2") gives us:
-  * automatic loading of the `.env` file,
-  * type validation at start-up (the app fails fast if config is wrong),
-  * `SecretStr` so API keys are masked when printed (`**********`),
-  * one typed object (`Settings`) we can pass around and override in tests.
 """
 
 from __future__ import annotations
@@ -119,3 +111,13 @@ def get_settings() -> Settings:
     `get_settings.cache_clear()` and set env vars to get a fresh instance.
     """
     return Settings()
+
+
+def postgres_dsn() -> str:
+    """Module-level shortcut for the Postgres connection string.
+
+    auth/users.py and ingestion/seed_users.py import this function
+    (`from supplyguard_ai.config import postgres_dsn`) and call `postgres_dsn()`.
+    It returns the same value as `get_settings().postgres_dsn`.
+    """
+    return get_settings().postgres_dsn
