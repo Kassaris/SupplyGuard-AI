@@ -6,7 +6,7 @@ readme = "README.md"
 authors = [
     { name = "Kassaris", email = "nickos.kassaris@gmail.com" }
 ]
-requires-python = ">=3.12"
+requires-python = ">=3.12.*"
 dependencies = [
     "chainlit>=2.12.0",
     "deepagents>=0.7.41",
