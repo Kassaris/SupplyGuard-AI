@@ -1,16 +1,11 @@
 # SupplyGuard AI. Start everything with:   docker compose up -d --build
 # Open http://localhost:8000 and sign in (see README).
-#
-# Pattern taken from HelpDesk-Lite (Postgres/pgvector, Neo4j, one-shot seed jobs, app),
-# extended with ChromaDB, two MCP servers, the external information service and a
-# no-network analysis sandbox.
+
 
 x-app-image: &app-image
   build: .
   image: supplyguard-ai:latest
   env_file: .env
-  # tini as PID 1: forwards SIGTERM to Python so `docker compose stop` exits
-  # cleanly (0) instead of being force-killed (137), and reaps child processes.
   init: true
 
 x-app-env: &app-env
@@ -185,8 +180,6 @@ services:
     <<: *app-image
     environment:
       <<: *app-env
-      # Chainlit chat history (schema chat.*). Overrides the localhost URL from .env:
-      # inside compose the database host is "postgres".
       DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}?search_path=chat
     ports:
       - "8000:8000"
@@ -211,10 +204,26 @@ services:
 
   pgadmin:
     image: dpage/pgadmin4:latest
-    profiles: ["tools"]   # optional: docker compose --profile tools up -d pgadmin
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:-admin@example.com}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:-admin}
+      PGADMIN_LISTEN_ADDRESS: 0.0.0.0
+      PGADMIN_SERVER_JSON_FILE: /tmp/servers.json
+      PGPASS_FILE: /tmp/pgpass
+      DB_USER: ${POSTGRES_USER}
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_NAME: ${POSTGRES_DB}
+    entrypoint:
+      - sh
+      - -c
+      - |
+        printf 'postgres:5432:*:%s:%s\n' "$$DB_USER" "$$DB_PASSWORD" > /tmp/pgpass
+        chmod 600 /tmp/pgpass
+        cat > /tmp/servers.json <<EOF
+        {"Servers": {"1": {"Name": "SupplyGuard", "Group": "Servers", "Host": "postgres", "Port": 5432,
+          "MaintenanceDB": "$$DB_NAME", "Username": "$$DB_USER", "SSLMode": "prefer", "PassFile": "/.pgpass"}}}
+        EOF
+        exec /entrypoint.sh
     ports:
       - "5050:80"
     depends_on:
