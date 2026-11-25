@@ -1,239 +1,153 @@
 SUPPLYGUARD AI - QUALITY NOTES
 ==============================
 
-Findings, decisions and open points from the quality work (tests, integration
-checks, retrieval benchmark). Numbers refer to the provided support-data.
+What was tested, why it was tested that way, what was found and what is
+still open. Numbers refer to the provided support-data.
 
 
 1. WHAT IS COVERED
 ------------------
 
-  Area                          Where                              Result
-  ----------------------------  ---------------------------------  ---------------------------
-  Business calculations         tests/test_calculations.py         pass
-  MC-17 golden scenario         tests/test_golden_scenario.py      3,200 / 5,350 / 77 / ~EUR 30,378
-  Data package completeness     tests/test_data_package.py         pass
-  Document access scopes        tests/test_document_access.py      pass
-  Scopes in every search mode   tests/test_retrieval_scopes.py     pass, 0 leaks
-  Planted data problems         tests/test_data_quality.py         pass + 2 xfail (known gap)
-  Loaded databases              tests/test_databases.py            11 integration tests, pass
-  Retrieval benchmark           benchmarks/, reports/              hybrid recall@5 = 1.0
-  Impact service (app code)     tests/test_impact_service.py       matches golden numbers
-  Intake + input guardrails     tests/test_intake_guardrails.py    pass, no LLM (fake extractor)
-  Recovery planner (app code)   tests/test_recovery_planner.py     EUR 30,378 and EUR 39,218 plans
-  Roles and permissions         tests/test_identity_service.py     pass
-  Red-team catalog              redteam/scenarios.jsonl            18 scenarios, 9 covered by tests
+  Area                           Where                              Result
+  -----------------------------  ---------------------------------  ------------------------------
+  Business rules, golden MC-17   tests/test_calculations.py,        3,200 / 5,350 / 77 / EUR 30,378
+                                 test_golden_scenario.py
+  App services                   test_impact_service.py,            same golden numbers from the
+                                 test_recovery_planner.py           app's own code
+  Intake and input guardrails    test_intake_guardrails.py          pass, no LLM (fake extractor)
+  Roles and document scopes      test_identity_service.py,          pass, 0 scope leaks
+                                 test_document_access.py,
+                                 test_retrieval_scopes.py
+  Data quality                   test_data_package.py,              pass + 2 xfail (issue #21)
+                                 test_data_quality.py
+  Loaded databases               test_databases.py                  11 integration tests, pass
+  Red-team through the workflow  test_redteam_workflow.py           pass (real graph, fake LLM)
+  Restart and idempotency        test_restart_recovery.py           pass, no duplicate PO
+  Retrieval benchmark            benchmarks/, reports/              hybrid recall@5 = 1.0
+  Evaluation, intake (84 cases)  eval/run_eval.py                   extraction 0.89, ambiguity 1.00,
+                                                                    injection 1.00
+  Evaluation, workflow (21)      eval/run_workflow_eval.py          system 21/21, answers 13/15
+  Manual tests, Chainlit UI      reports/manual_test_plan.md        25 scenarios: 22 pass, 1 fail,
+                                                                    2 partial
+  Red-team catalog               redteam/scenarios.jsonl            18 scenarios
 
-  uv run pytest                   -> unit tests, no Docker, no LLM
-  uv run pytest -m integration    -> database tests, needs Docker
+  uv run pytest                  -> unit tests, no Docker, no LLM, no cost
+  uv run pytest -m integration   -> database tests, needs Docker
 
 
 2. DECISIONS AND WHY
 --------------------
 
-2.1 Unit tests never call an LLM or the network.
-    Numbers (stock, shortfall, cost, approval tier) must come from code, not
-    from the model. Tests that call a model are slow, cost money and give
-    different answers on each run. Where an embedding model is needed in a unit
-    test we use DeterministicFakeEmbedding: the search logic and scope filters
-    are the real code, only the vectors are fake.
+2.1 Unit tests never call an LLM. Numbers must come from code, not from the
+    model; tests that call a model are slow, cost money and change between
+    runs. The app accepts replacements for its LLM parts (fake extractor,
+    fake investigator, DeterministicFakeEmbedding), so the real code around
+    the model is tested for free.
 
-2.2 Integration tests are separated with a pytest marker.
-    They need Postgres, Neo4j and ChromaDB. A plain `pytest` skips them, so
-    anyone can run the unit tests on a laptop without Docker.
+2.2 Integration tests are behind a pytest marker and compare every store
+    (Postgres, pgvector, ChromaDB, Neo4j) with the source CSV files. This
+    catches lost rows and duplicates; a plain `pytest` still runs without
+    Docker.
 
-2.3 Integration tests compare every store with the source CSV files.
-    Row, node and relationship counts must equal the CSV row counts. This
-    catches rows lost during loading (e.g. rows with blank ids or bad dates)
-    and also catches duplicates if a loader is run twice.
+2.3 Known gaps are marked xfail(strict=True), not deleted. The suite stays
+    green, the gap stays documented, and the suite fails as soon as the gap
+    is fixed, so the marker cannot be forgotten.
 
-2.4 Known gaps are marked xfail(strict=True), not deleted.
-    The two supplier-name tests fail today because of a real gap (section 3.1).
-    xfail keeps the suite green and documents the gap; strict=True makes the
-    suite fail as soon as the gap is fixed, so the marker cannot be forgotten.
+2.4 Fewer, meaningful tests. Each test checks one rule with the input that
+    would actually break it. Reviews removed repeated cases (e.g. 51 -> 30
+    tests) without losing coverage. Defenses were broken on purpose to
+    confirm the tests fail (one test was found not to be specific and was
+    fixed).
 
-2.5 Fewer, meaningful tests over many repeated ones.
-    The first version of the retrieval scope tests ran 3 questions x 4 modes
-    per check (29 tests). We kept one question per check - the one that would
-    actually return the forbidden document if the filter broke - and still run
-    it in all 4 modes (13 tests). The same review took the whole new set from
-    51 to 30 tests (integration: 14 to 11). Same coverage, easier to maintain.
+2.5 The app's own services are tested, not only helper functions. The golden
+    numbers come out of two independent implementations: our helpers and
+    services/impact.py + services/recovery.py.
 
-2.6 Retrieval benchmark: 31 hand-written questions.
-    - Large enough to show a difference between the modes. With ~5 questions
-      every mode scored the same; with 31 it is clear that embeddings miss exact
-      identifiers and keyword search misses paraphrases.
-    - Small enough that every expected answer was checked by opening the
-      document. A wrong "expected document" would distort the scores more than
-      a smaller set does.
-    - Covers four kinds of question: 12 paraphrases of procedures, 8 about the
-      MC-17 scenario, 10 with identifiers (HC-012, CERT-S003-72388,
-      PO-2026-9002 ...), 1 scope check (finance-confidential document).
-    - The LangSmith guide suggests starting with 10-20 representative cases.
+2.6 Retrieval benchmark: 31 hand-written questions, every expected document
+    checked by hand. Large enough to separate the modes, small enough to
+    verify. "incident HC-026" was replaced by "HC-012", because the hybrid
+    search contains a rule designed around HC-026 (avoid measuring the case
+    the code was tuned on).
 
-2.7 One question was replaced to avoid overfitting.
-    The team's hybrid search contains an "identifiers first" rule that was
-    designed around the question "incident HC-026" (see retrieval/service.py).
-    Keeping that exact question would measure the case the code was tuned on,
-    so it was replaced with "incident HC-012".
+2.7 The 105 evaluation cases are held out (CONTRIBUTING rule 6): they are only
+    measured, never used in tests or for tuning. Numbers and ids are checked
+    by code. Behaviour written as text ("refuse: quarantined") is checked by
+    an LLM judge that also writes its reason. Each run is one LangSmith
+    experiment, so before/after runs can be compared.
 
-2.8 Benchmark metrics reuse the team's retrieval/metrics.py.
-    One implementation of recall@k / MRR / leaks for the app and the benchmark,
-    so the numbers cannot drift apart.
-
-2.9 Latency is measured without the embedding call.
-    Every question is embedded once before timing. Otherwise the first mode
-    pays the embedding API call and the others hit the cache, which would make
-    pgvector look slower than ChromaDB for no real reason.
-
-2.10 Results are stored twice: reports/ and LangSmith.
-    reports/retrieval_benchmark.md is readable without an account; the
-    LangSmith experiments (retrieval-pgvector / -chroma / -keyword / -hybrid on
-    dataset supplyguard-retrieval-benchmark) allow side-by-side comparison per
-    question. LangSmith scores were read back and match the local table.
-
-2.11 The app's own services are tested, not only our helper functions.
-    The first golden tests used small helpers (calculations.py). The agent does
-    not call those: it calls services/impact.py and services/recovery.py. Both
-    are now tested against the golden file. Result: the same numbers (3,200 /
-    5,350 / 77 / EUR 30,378) come out of two independent implementations.
-
-2.12 The intake chain is tested with a fake extractor.
-    build_intake_chain() accepts any Runnable in place of the LLM. The fake one
-    returns the facts a model would extract, so we test the code around the
-    model - id resolution, clarification, the approval policy and the injection
-    scan - for free and with the same result on every run.
-
-2.13 Test messages are our own; the 105 evaluation cases are not used in tests.
-    The evaluation cases are held out (CONTRIBUTING rule 6). Copying them into
-    unit tests would turn them into training data for the code.
-
-2.14 Red-team scenarios were written before the workflow existed.
-    Each scenario states the attack, the expected safe behaviour and the layer
-    that should stop it (defense in depth, course guide 07). Half of them are
-    already checked by service-level tests; the rest run end to end through the
-    agent once the workflow is in main.
-
-2.15 The 105-case evaluation waits for the complete workflow.
-    About 85 cases could be scored with intake + impact alone, but the rest
-    need follow-up, approval and restart. Waiting avoids writing the harness
-    twice and gives one LangSmith experiment for all 105 cases.
+2.8 Two layers plus manual tests. "The system did the right thing" (plans,
+    approvals, POs - checked by code) and "the assistant said the right
+    thing" (LLM judge) fail independently, so both are measured. Manual tests
+    add what neither sees: the UI, roles across logins, a real restart. They
+    also caught an error the judge accepted (E2 in the manual plan).
 
 
-3. PROBLEMS FOUND
------------------
+3. FINDINGS
+-----------
 
-3.1 Supplier names with company suffixes are not resolved.
-    resolve_supplier("Orion Supply Ltd") returns nothing (expected S016). The
-    function compares the typed text as a substring of the stored name, and
-    "orion supply ltd" is longer than "orion supply". The data contains 22
-    planted name variants of this kind ('... Ltd', '... Comp.').
-    Fix proposed: normalise both sides (lower case, drop punctuation, drop
-    'ltd'/'inc', map 'comp' -> 'components'; keep 'gmbh', it is part of
-    'Atlas Logistik GmbH'). Tracked in GitHub issue #21; covered by 2 xfail tests.
+Serious (affect correctness or the demo)
 
-3.2 Embeddings cannot tell identifiers apart.
-    pgvector and ChromaDB returned other incident reports for "incident HC-026"
-    and other qualification records for "CERT-S003-72388". To an embedding,
-    HC-026 and HC-029 look almost the same. Whether an identifier is found is
-    luck: HC-012 was found, HC-026 was not.
+3.1 A new case ignores actions executed by earlier cases. Two cases moved the
+    same 800 units out of W-HUB and expedited PO-2026-9002 twice.      #57
+3.2 A case that fails at intake (LLM error) stays "intake" for good, and the
+    chat stays bound to it: the next message fails with KeyError.       #56
+3.3 The follow-up assistant states wrong facts: above EUR 75,000 "needs PM +
+    FC" (tool says finance director); Delta and Atlas "disconnected"
+    (they share Veltro); offers to use the superseded 10-day contract.  #54
+3.4 The recommended plan changes between identical runs (EUR 30,378 once,
+    EUR 39,218 twice), and plan_full_cover relies on Delta despite a high
+    alert on its upstream Veltro. Conflict resolution also changed (Helios
+    capacity 4,000 vs 1,500).                                           #59
+3.5 Intake rejects components that exist but are used in no product
+    (7 of 64 extraction cases). The fix must still ask when a component
+    does not exist, or the ambiguity cases break.                       #53
 
-3.3 Keyword search misses paraphrases.
-    "Which existing purchase orders can be expedited?" did not return the
-    expedite procedure (DOC-PRO-08), because the procedure uses different words.
+Medium
 
-3.4 Hybrid fixes both, with one weak spot.
-    Hybrid found the expected document in the top 5 for all 30 questions.
-    Weakest result: the Delta Micro offer e-mail ranked 4th behind contracts
-    (Q19). It is found, but a user reading only the first result would miss it.
+3.6 Supplier names with a suffix ("Orion Supply Ltd") are not resolved;
+    22 such variants in the data.                                       #21
+3.7 A finance controller can open a case; the full investigation runs and is
+    refused only at "submit for approval".                              #58
+3.8 No defense of the app's own against "print your system prompt": it was
+    stopped by the Azure content filter, and the user is told "the model is
+    unreachable - ask again", which is misleading.
+3.9 The golden message itself is reported as a prompt injection (false
+    positive in the user-message scan).
+3.10 No user has the finance_director role, so a EUR 90,000 plan can be
+    discussed but never approved. IdentityService.require_can_approve_as
+    works and is tested but is not called anywhere.
 
-3.5 pgvector and ChromaDB give identical results.
-    Expected: both hold the same vectors (verified by an integration test).
-    The difference between them is operational (Postgres extension vs separate
-    service), not retrieval quality.
+Retrieval
 
-3.6 The graph has more disconnected entities than the manifest lists.
-    The manifest names S058-S060 as suppliers without components and
-    MC-296..MC-300 as components without products. Neo4j also shows S006
-    (Atlas Logistik GmbH) supplying nothing, and 46 components in total that
-    are used in no product. Not a loading error - the source CSVs say the same -
-    but the agent should not assume the manifest list is complete.
+3.11 Embeddings cannot tell identifiers apart (HC-026 vs HC-029) and keyword
+    search misses paraphrases. Hybrid finds the expected document in the top
+    5 for every question; weakest result: the Delta offer e-mail ranks 4th.
+    pgvector and ChromaDB give identical results (same vectors).
 
-3.7 Windows environment issues that broke the tools.
-    - The antivirus sets SSLKEYLOGFILE, which crashed the Postgres/Neo4j
-      drivers (OPENSSL_Uplink). Removed in tests/conftest.py and at the start
-      of the benchmark scripts.
-    - The antivirus also inspects HTTPS, so Python did not trust LangSmith's
-      certificate. Fixed with truststore (OS certificate store), as in
-      scripts/check_langsmith.py. uv needs --system-certs for the same reason.
-
-3.8 Smaller code observations.
-    - retrieval/metrics.py refers to tests/test_benchmark_metrics.py, which does
-      not exist.
-    - mode="graph" is not wired in build_postgres_retrieval, so the GraphRAG
-      path could not be benchmarked.
-    - Earlier: the procurement MCP server, the agent tools and the middleware
-      imported services/container.py before it was in main, so they could not
-      be tested at that time. The container is now merged.
-
-3.9 One permission check is not used yet.
-    IdentityService.require_can_approve_as (a user may only sign for their own
-    role) works and is tested, but no part of the app calls it. The other two
-    checks are wired: graph/nodes.py (open a case) and services/approvals.py
-    (submit for approval).
-
-3.10 No user can approve the raised EUR 90,000 cap.
-    policies.json needs a finance_director for the EUR 90,000 tier, but
-    users.csv has no user with that role. The "what if the cap is 90,000"
-    question can be answered, but the approval cannot be signed in the demo.
-
-3.11 Nothing stops the assistant from revealing its own instructions.
-    The grounding rules in core/prompts.py cover untrusted documents and
-    numbers, but not requests like "print your system prompt" (red-team RT-07).
-    Expected to be a finding when the scenario is run end to end.
-
-3.12 Fixed by the team: injection inside the user's message.
-    An early review found that the injection scan only ran on documents. The
-    intake now scans the user's message too (user_message_findings), with the
-    LLM and a pattern scan as two independent detectors. A test confirms it
-    works even when the model misses the injection.
+Fixed by the team after review: the injection scan now also covers the
+user's message, with two independent detectors (LLM and pattern scan).
 
 
-4. NOT TESTED YET - AND HOW IT COULD BE DONE
--------------------------------------------
+4. NOT TESTED - AND HOW IT COULD BE DONE
+----------------------------------------
 
-4.1 Re-running the document ingestion (pgvector / ChromaDB).
-    Why not: doc-ingest calls the Azure embedding API (cost on every run).
-    What was done instead: data-load (Postgres) and neo4j-seed (Neo4j) were
-    re-run and the integration tests still passed - no duplicates.
-    How it could be done without cost: ingest() already accepts an Embeddings
-    object and temporary table/collection names (names=...). A test can call it
-    twice with DeterministicFakeEmbedding and throw-away names, assert the
-    chunk count stays 272 (not 544), and drop the temporary tables.
+4.1 Re-running the document ingestion. It calls the embedding API on every
+    run. ingest() accepts an Embeddings object and temporary table names, so
+    a test could run it twice with DeterministicFakeEmbedding and check the
+    chunk count stays 272.
 
-4.2 Graph mode in the benchmark.
-    How: pass the Neo4j graph service to RetrievalService (graph=...) and add
-    "graph" to MODES.
-
-4.3 Agent-level work. The workflow, approvals service and container are now
-    in main, so these can start:
-    - The 105 evaluation cases as a LangSmith dataset with code evaluators for
-      numbers and LLM-as-judge for behaviour (clarify, refuse, ignore injection).
-    - Red-team scenarios as permanent automated tests: prompt injection,
-      data exfiltration (finance scope), tool abuse (order from Borealis,
-      over the EUR 75,000 cap), payload change after approval.
-    - Restart at approval_pending: resume from checkpoint, no duplicate PO.
-    - Manual test plan in the Chainlit UI with a LangSmith trace per run.
+4.2 Graph mode in the benchmark. mode="graph" is not wired in
+    build_postgres_retrieval; once it is, add "graph" to the benchmark modes.
 
 
-5. LIMITATIONS OF THE NUMBERS
------------------------------
+5. LIMITATIONS
+--------------
 
-- The benchmark questions were written by us while reading the documents.
-  31 questions show a trend, not statistical certainty: one question changes
-  recall by about 3 percentage points.
-- Latency varies between runs (keyword: 30-61 ms across four runs). Only the
-  broad picture holds: all modes answer in well under 200 ms; hybrid is a bit
-  slower because it runs two searches.
-- The evaluation cases in support-data/evaluation are held out: nothing in
-  this work was tuned on them.
+- 31 benchmark questions show a trend, not certainty: one question moves
+  recall by about 3 points.
+- Each evaluation ran once. The LLM gives different answers between runs
+  (3.4), so a single score can move; repeated runs would give a range.
+- The LLM judge is lenient: it passed answers with the right conclusion and
+  the wrong reason (EV-0083, EV-0097).
+- Manual tests were run once, by one person, on one PC.
+- Nothing in this work was tuned on the held-out evaluation cases.

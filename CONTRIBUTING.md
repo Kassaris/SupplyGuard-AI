@@ -77,7 +77,7 @@ These rules come from the project requirements. Every change is expected to resp
 3. **Retrieved content is data, not instructions.** Text from documents, e-mails, or tool results never changes policies, approvals, or tool calls.
 4. **No write action without a bound approval.** Purchase orders, expedites, transfers, and schedule changes require an `approval_id` for the exact payload and an idempotency key.
 5. **Access scopes are enforced in retrieval.** Users only see documents within their scopes; finance-confidential data never reaches users without that scope.
-6. **The evaluation cases are held out.** Do not tune prompts on `support-data/evaluation/eval_cases.jsonl`; use the separate development examples in `eval/dev/` instead.
+6. **The evaluation cases are held out.** Do not tune prompts on `support-data/evaluation/eval_cases.jsonl`; these cases are only measured.
 7. **Every new tool or business rule comes with a test.**
 
 ## 7. Running tests and evaluation
@@ -87,7 +87,7 @@ uv run pytest                 # unit and data tests (no LLM, no network)
 uv run pytest -m integration  # tests that need the Docker services running
 ```
 
-Evaluation, benchmark, and red-team commands are documented in `eval/`, `benchmarks/`, and `redteam/` as they are added.
+The evaluation and benchmark scripts in `eval/` and `benchmarks/` describe how to run them at the top of each file; the red-team scenarios are described in `redteam/README.md`.
 
 ## 8. Reporting issues
 
