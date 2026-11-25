@@ -183,7 +183,11 @@ services:
 
   app:
     <<: *app-image
-    environment: *app-env
+    environment:
+      <<: *app-env
+      # Chainlit chat history (schema chat.*). Overrides the localhost URL from .env:
+      # inside compose the database host is "postgres".
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}?search_path=chat
     ports:
       - "8000:8000"
     networks: [default, sandbox_net]
