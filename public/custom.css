@@ -24,13 +24,13 @@
 
 /* Default color */
 button.bg-primary {
-    background-color: #38BDF8 !important;
-    color: #082F49 !important;
+    background-color: #FD5108 !important;   /* PwC orange */
+    color: #FFFFFF !important;
 }
 
 /* Hover color */
 button.bg-primary:hover:not(:disabled) {
-    background-color: #0EA5E9 !important;
+    background-color: #D04A02 !important;   /* darker PwC orange */
 }
 
 /* Disabled state */
@@ -44,11 +44,11 @@ button.bg-primary:disabled {
    CLOSE (X) BUTTON
    ======================================== */
 
-/* Close (X) button - larger blue circle */
+/* Close (X) button - larger orange circle */
 button:has(> svg.lucide-x):focus,
 button:has(> svg.lucide-x):focus-visible {
-    --tw-ring-color: #38BDF8 !important;
-    box-shadow: 0 0 0 2px #38BDF8 !important;
+    --tw-ring-color: #FD5108 !important;
+    box-shadow: 0 0 0 2px #FD5108 !important;
     outline: 6px solid transparent !important;
     outline-offset: 0;
     border-radius: 50% !important;
@@ -106,23 +106,23 @@ button:has(svg.lucide-sun):focus-visible {
    CHAT HISTORY SIDEBAR (Chainlit's own)
    ========================================
    Lists each user's saved chats (data layer: persistence/chat_history.py).
-   Chainlit colours its sidebar with these variables (HSL values). Same colours
-   as the old custom sidebar: slate in light mode, near-black in dark mode.
+   Chainlit colours its sidebar with these variables (HSL values). Warm greys
+   with a PwC-orange tint for the hover / selected chat (no blue tones).
    `:root.dark` is more specific than Chainlit's `.dark`, so ours win. */
 
 :root {
-    --sidebar-background: 210 40% 96.1%;   /* #F1F5F9 */
-    --sidebar-foreground: 215 25% 26.7%;   /* #334155 */
-    --sidebar-border: 214.3 31.8% 91.4%;   /* #E2E8F0 */
-    --sidebar-accent: 214 12% 90%;         /* #E2E5E9 hover / selected chat */
-    --sidebar-accent-foreground: 215 25% 26.7%;
+    --sidebar-background: 60 4.8% 95.9%;   /* #F5F5F4 */
+    --sidebar-foreground: 30 6.3% 25.1%;   /* #44403C */
+    --sidebar-border: 20 5.9% 90%;         /* #E7E5E4 */
+    --sidebar-accent: 21 100% 92%;         /* #FFE3D4 hover / selected chat */
+    --sidebar-accent-foreground: 30 6.3% 25.1%;
 }
 
 :root.dark {
-    --sidebar-background: 210 10% 11.4%;   /* #1A1D20 */
-    --sidebar-foreground: 220 13% 91%;     /* #E5E7EB */
-    --sidebar-border: 215 14% 34%;         /* #374151 */
-    --sidebar-accent: 210 5% 20%;          /* ~ white 10% over the background */
+    --sidebar-background: 24 9.8% 10%;      /* #1C1917 */
+    --sidebar-foreground: 20 5.9% 90%;      /* #E7E5E4 */
+    --sidebar-border: 30 6.3% 25.1%;        /* #44403C */
+    --sidebar-accent: 20 30% 18%;          /* #3B2A20 dark orange tint */
     --sidebar-accent-foreground: 0 0% 100%;
 }
 
@@ -163,9 +163,9 @@ button:has(svg.lucide-sun):focus-visible {
    ======================================== */
 
 form:has(#email):has(#password) input:focus-visible {
-    --tw-ring-color: #38BDF8 !important;
-    border-color: #38BDF8 !important;
-    outline-color: #38BDF8 !important;
+    --tw-ring-color: #FD5108 !important;
+    border-color: #FD5108 !important;
+    outline-color: #FD5108 !important;
 }
 
 
@@ -185,13 +185,13 @@ body:has(#email):has(#password) img[src$="/favicon"] {
 
 /* Light Mode */
 body:has(#email):has(#password) div.bg-muted:has(> img[src$="/favicon"]) {
-    background: linear-gradient(135deg, #F1F5F9, #BAE6FD) !important;
+    background: linear-gradient(135deg, #F5F5F4, #FFD8C2) !important;
 }
 
 /* Dark Mode */
 .dark body:has(#email):has(#password) div.bg-muted:has(> img[src$="/favicon"]),
 body.dark:has(#email):has(#password) div.bg-muted:has(> img[src$="/favicon"]) {
-    background: linear-gradient(135deg, #111827, #164E63) !important;
+    background: linear-gradient(135deg, #1C1917, #7A2E06) !important;
 }
 
 
@@ -202,7 +202,7 @@ body.dark:has(#email):has(#password) div.bg-muted:has(> img[src$="/favicon"]) {
 /* Both buttons */
 button[data-helpdesk-action="approve"],
 button[data-helpdesk-action="reject"] {
-    width: 120px !important;
+    width: 100px !important;
     height: 42px !important;
     min-height: 42px !important;
     padding: 0 16px !important;
