@@ -11,6 +11,6 @@
 | `defense` | the layer that should stop it |
 | `covered_by` | the automated test that already checks it, or `pending` |
 
-Scenarios marked `pending` need the full workflow (LangGraph + approvals service) and will be run end to end once it is in `main`. Already covered scenarios are checked at the service level today; the end-to-end run checks them again through the agent.
+Scenarios marked "workflow, fake LLM" run through the real LangGraph workflow with the LLM parts replaced by fakes (tests/workflow_setup.py). Scenarios marked `pending` depend on what the model itself says or does, so they need a run with the real LLM.
 
 The inputs are written for red-teaming; they are not taken from the held-out evaluation cases.
