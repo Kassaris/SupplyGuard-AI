@@ -18,6 +18,11 @@ checks, retrieval benchmark). Numbers refer to the provided support-data.
   Planted data problems         tests/test_data_quality.py         pass + 2 xfail (known gap)
   Loaded databases              tests/test_databases.py            11 integration tests, pass
   Retrieval benchmark           benchmarks/, reports/              hybrid recall@5 = 1.0
+  Impact service (app code)     tests/test_impact_service.py       matches golden numbers
+  Intake + input guardrails     tests/test_intake_guardrails.py    pass, no LLM (fake extractor)
+  Recovery planner (app code)   tests/test_recovery_planner.py     EUR 30,378 and EUR 39,218 plans
+  Roles and permissions         tests/test_identity_service.py     pass
+  Red-team catalog              redteam/scenarios.jsonl            18 scenarios, 9 covered by tests
 
   uv run pytest                   -> unit tests, no Docker, no LLM
   uv run pytest -m integration    -> database tests, needs Docker
@@ -87,6 +92,33 @@ checks, retrieval benchmark). Numbers refer to the provided support-data.
     dataset supplyguard-retrieval-benchmark) allow side-by-side comparison per
     question. LangSmith scores were read back and match the local table.
 
+2.11 The app's own services are tested, not only our helper functions.
+    The first golden tests used small helpers (calculations.py). The agent does
+    not call those: it calls services/impact.py and services/recovery.py. Both
+    are now tested against the golden file. Result: the same numbers (3,200 /
+    5,350 / 77 / EUR 30,378) come out of two independent implementations.
+
+2.12 The intake chain is tested with a fake extractor.
+    build_intake_chain() accepts any Runnable in place of the LLM. The fake one
+    returns the facts a model would extract, so we test the code around the
+    model - id resolution, clarification, the approval policy and the injection
+    scan - for free and with the same result on every run.
+
+2.13 Test messages are our own; the 105 evaluation cases are not used in tests.
+    The evaluation cases are held out (CONTRIBUTING rule 6). Copying them into
+    unit tests would turn them into training data for the code.
+
+2.14 Red-team scenarios were written before the workflow existed.
+    Each scenario states the attack, the expected safe behaviour and the layer
+    that should stop it (defense in depth, course guide 07). Half of them are
+    already checked by service-level tests; the rest run end to end through the
+    agent once the workflow is in main.
+
+2.15 The 105-case evaluation waits for the complete workflow.
+    About 85 cases could be scored with intake + impact alone, but the rest
+    need follow-up, approval and restart. Waiting avoids writing the harness
+    twice and gives one LangSmith experiment for all 105 cases.
+
 
 3. PROBLEMS FOUND
 -----------------
@@ -98,7 +130,7 @@ checks, retrieval benchmark). Numbers refer to the provided support-data.
     planted name variants of this kind ('... Ltd', '... Comp.').
     Fix proposed: normalise both sides (lower case, drop punctuation, drop
     'ltd'/'inc', map 'comp' -> 'components'; keep 'gmbh', it is part of
-    'Atlas Logistik GmbH'). Tracked as a GitHub issue; covered by 2 xfail tests.
+    'Atlas Logistik GmbH'). Tracked in GitHub issue #21; covered by 2 xfail tests.
 
 3.2 Embeddings cannot tell identifiers apart.
     pgvector and ChromaDB returned other incident reports for "incident HC-026"
@@ -140,8 +172,31 @@ checks, retrieval benchmark). Numbers refer to the provided support-data.
       not exist.
     - mode="graph" is not wired in build_postgres_retrieval, so the GraphRAG
       path could not be benchmarked.
-    - Earlier: the procurement MCP server imported services/container.py before
-      it was in main, so its write tools could not be tested at that time.
+    - Earlier: the procurement MCP server, the agent tools and the middleware
+      imported services/container.py before it was in main, so they could not
+      be tested at that time. The container is now merged.
+
+3.9 One permission check is not used yet.
+    IdentityService.require_can_approve_as (a user may only sign for their own
+    role) works and is tested, but no part of the app calls it. The other two
+    checks are wired: graph/nodes.py (open a case) and services/approvals.py
+    (submit for approval).
+
+3.10 No user can approve the raised EUR 90,000 cap.
+    policies.json needs a finance_director for the EUR 90,000 tier, but
+    users.csv has no user with that role. The "what if the cap is 90,000"
+    question can be answered, but the approval cannot be signed in the demo.
+
+3.11 Nothing stops the assistant from revealing its own instructions.
+    The grounding rules in core/prompts.py cover untrusted documents and
+    numbers, but not requests like "print your system prompt" (red-team RT-07).
+    Expected to be a finding when the scenario is run end to end.
+
+3.12 Fixed by the team: injection inside the user's message.
+    An early review found that the injection scan only ran on documents. The
+    intake now scans the user's message too (user_message_findings), with the
+    LLM and a pattern scan as two independent detectors. A test confirms it
+    works even when the model misses the injection.
 
 
 4. NOT TESTED YET - AND HOW IT COULD BE DONE
@@ -154,14 +209,14 @@ checks, retrieval benchmark). Numbers refer to the provided support-data.
     How it could be done without cost: ingest() already accepts an Embeddings
     object and temporary table/collection names (names=...). A test can call it
     twice with DeterministicFakeEmbedding and throw-away names, assert the
-    chunk count stays 272 (not 544), and drop the temporary tables. Tracked as
-    a GitHub issue.
+    chunk count stays 272 (not 544), and drop the temporary tables.
 
 4.2 Graph mode in the benchmark.
     How: pass the Neo4j graph service to RetrievalService (graph=...) and add
     "graph" to MODES.
 
-4.3 Agent-level work, waiting for the workflow in main.
+4.3 Agent-level work. The workflow, approvals service and container are now
+    in main, so these can start:
     - The 105 evaluation cases as a LangSmith dataset with code evaluators for
       numbers and LLM-as-judge for behaviour (clarify, refuse, ignore injection).
     - Red-team scenarios as permanent automated tests: prompt injection,
