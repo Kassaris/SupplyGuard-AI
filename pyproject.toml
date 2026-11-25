@@ -7,11 +7,44 @@ authors = [
     { name = "Kassaris", email = "nickos.kassaris@gmail.com" }
 ]
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "chainlit>=2.12.0",
+    "deepagents>=0.7.41",
+    "httpx>=0.28.1",
+    "langchain>=1.5.2",
+    "langchain-chroma>=1.2.0",
+    "langchain-core>=1.8.4",
+    "langchain-mcp-adapters>=0.3.2",
+    "langchain-openai>=1.8.5",
+    "langchain-postgres>=0.0.19",
+    "langchain-text-splitters>=1.2.0",
+    "langgraph>=1.2.24",
+    "langgraph-checkpoint-postgres>=3.2.1",
+    "mcp>=1.30.0",
+    "neo4j>=6.4.1",
+    "psycopg-pool>=3.3.3",
+    "psycopg[binary]>=3.3.9",
+    "pydantic>=2.14.4",
+    "pydantic-settings>=2.16.3",
+]
 
 [project.scripts]
 supplyguard-ai = "supplyguard_ai:main"
 
+[tool.pytest.ini_options]
+# Where pytest looks for tests, and which folders it adds to the import path:
+# src/ for the application package, tests/ for the shared test helpers.
+testpaths = ["tests"]
+pythonpath = ["src", "tests"]
+# Integration tests need the Docker services; run them with `uv run pytest -m integration`.
+markers = ["integration: needs the Docker services with the data loaded"]
+addopts = "-m 'not integration'"
+
 [build-system]
 requires = ["uv_build>=0.13.9,<0.14.0"]
 build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+]
