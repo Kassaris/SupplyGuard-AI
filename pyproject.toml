@@ -27,6 +27,9 @@ supplyguard-ai = "supplyguard_ai:main"
 # src/ for the application package, tests/ for the shared test helpers.
 testpaths = ["tests"]
 pythonpath = ["src", "tests"]
+# Integration tests need the Docker services; run them with `uv run pytest -m integration`.
+markers = ["integration: needs the Docker services with the data loaded"]
+addopts = "-m 'not integration'"
 
 [build-system]
 requires = ["uv_build>=0.13.9,<0.14.0"]
